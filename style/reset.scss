@@ -1,0 +1,525 @@
+//MIXINS
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -khtml-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin background-size($size) {
+  -webkit-background-size: $size;
+  -moz-background-size: $size;
+  -ms-background-size: $size;
+  -o-background-size: $size;
+  background-size: $size;
+}
+
+@mixin box-shadow($styles) {
+  -webkit-box-shadow: $styles;
+  -moz-box-shadow: $styles;
+  -ms-box-shadow: $styles;
+  -o-box-shadow: $styles;
+  box-shadow: $styles;
+}
+
+@mixin transition($property: all, $duration: .4s, $easing: ease) {
+  -webkit-transition: $property $duration $easing;
+  -moz-transition: $property $duration $easing;
+  -ms-transition: $property $duration $easing;
+  -o-transition: $property $duration $easing;
+  transition: $property $duration $easing;
+}
+
+@mixin transform($action, $backface: false) {
+  @if $backface {
+    -webkit-transform: $action;
+    -moz-transform: $action;
+    -ms-transform: $action;
+    -o-transform: $action;
+    transform: $action;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  } @else {
+    -webkit-transform: $action;
+    -moz-transform: $action;
+    -ms-transform: $action;
+    -o-transform: $action;
+    transform: $action;
+  }
+}
+
+@mixin user-select($select) {
+  -webkit-touch-callout: $select;
+  -webkit-user-select: $select;
+  -khtml-user-select: $select;
+  -moz-user-select: $select;
+  -ms-user-select: $select;
+  user-select: $select;
+}
+
+@mixin backface-visibility($back: hidden) {
+  -webkit-backface-visibility: $back;
+  -moz-backface-visibility: $back;
+  backface-visibility: $back;
+}
+
+@mixin center($horizontal: true, $vertical: true) {
+  position: absolute;
+  @if ($horizontal and $vertical) {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  } @else if ($horizontal) {
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+  } @else if ($vertical) {
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    -moztransform: translate(0, -50%);
+    transform: translate(0, -50%);
+  }
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+@mixin animation ($delay, $duration, $animation) {
+  -webkit-animation-delay: $delay;
+  -webkit-animation-duration: $duration;
+  -webkit-animation-name: $animation;
+  -webkit-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+
+  -moz-animation-delay: $delay;
+  -moz-animation-duration: $duration;
+  -moz-animation-name: $animation;
+  -moz-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+
+  -o-animation-delay: $delay;
+  -o-animation-duration: $duration;
+  -o-animation-name: $animation;
+  -o-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+
+  animation-delay: $delay;
+  animation-duration: $duration;
+  animation-name: $animation;
+  animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+}
+
+@mixin declare-font-face($font-family, $font-filename, $font-weight: normal, $font-style: normal) {
+  @font-face {
+    font-family: '#{$font-family}';
+    src: url('../fonts/#{$font-filename}.eot');
+    src: url('../fonts/#{$font-filename}.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/#{$font-filename}.woff') format('woff'),
+    url('../fonts/#{$font-filename}.ttf') format('truetype'),
+    url('../fonts/#{$font-filename}.svg##{$font-family}') format('svg');
+    font-weight: $font-weight;
+    font-style: $font-style
+  }
+}
+
+@mixin svg-font-face($font-family, $font-filename, $font-weight: normal, $font-style: normal) {
+  @font-face {
+    font-family: '#{$font-family}';
+    src: url('../fonts/#{$font-filename}.svg##{$font-family}') format('svg');
+    font-weight: $font-weight;
+    font-style: $font-style
+  }
+}
+
+/* Using @include declare-font-face('FontName', 'font-filename', 400); */
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  /* Using @include svg-font-face('FontName', 'font-filename', 400); */
+}
+
+//RESET
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+  -webkit-text-size-adjust: none;
+}
+
+a, a:hover, input, textarea, select {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  outline: 0 none
+}
+
+ol, ul {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+
+:focus {
+  outline: 0;
+}
+
+a img, fieldset, hr {
+  border: 0;
+}
+
+mark {
+  background: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td {
+  vertical-align: middle;
+}
+
+input, select, textarea {
+  @include box-sizing();
+  @include transition(all, 0.4s);
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+input[type="submit"], input[type="button"], button {
+  cursor: pointer;
+  -webkit-appearance: none;
+  border: none;
+}
+
+/* Selection */
+::-moz-selection {
+  color: #fff;
+  background: #009bf8
+}
+
+::selection {
+  color: #fff;
+  background: #009bf8
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #707070;
+}
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color: #707070;
+  opacity: 1;
+}
+
+hr {
+  clear: both;
+  font-size: 0;
+  overflow: hidden;
+  display: block;
+  height: 0
+}
+
+body, html {
+  height: 100%;
+}
+
+main {
+  min-height: 100%;
+}
+
+* html main {
+  height: 100%;
+}
+
+.pusher {
+  clear: both;
+}
+
+article, aside, details, figcaption, figure, footer, header, nav, section, summary {
+  display: block
+}
+
+.alignleft {
+  float: left;
+}
+
+.alignright {
+  float: right;
+}
+
+img.alignleft {
+  margin: 0 30px 10px 0;
+}
+
+img.alignright {
+  margin: 0 0 10px 30px;
+}
+
+.aligncenter {
+  margin-left: auto;
+  margin-right: auto
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.valign {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 94%
+}
+
+.vfix {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  width: 0
+}
+
+$pageWidth: 1140px;
+$color: #333333;
+$color2: #0C59AF;
+$font: Arial;
+
+//SELECT
+.selbel_w {
+  position:relative;
+  display:block;
+  width:100%;
+  font: 400 14px/40px $font;
+  height: 40px;
+  select {
+    width:100%;
+    height:100%;
+    cursor:pointer;
+    position:relative;
+    display:block;
+    z-index:1;
+    opacity:0;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    + span {
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      background:#fff;
+      color:#555;
+      padding:0 10px;
+      @include border-radius(5px);
+      border: 1px solid #eee;
+      &:after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 9px 5px 0 5px;
+        border-color: #555 transparent transparent transparent;
+        position: absolute;
+        right: 13px;
+        top: 16px;
+      }
+      &.err {
+        border-color: #ef4036
+      }
+    }
+    option {
+      padding: 5px
+    }
+  }
+}
+
+//CONTACT FORM
+div.wpcf7 {
+  .wpcf7-form-control-wrap {
+    display: block!important;
+    margin-bottom: 20px;
+    clear: both;
+  }
+  .wpcf7-not-valid-tip {
+    background: #fff;
+    border: 1px solid #FF0000;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    font-family: $font;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+  }
+  .wpcf7-response-output {
+    float: left;
+    width: 100%;
+    margin: 10px 0 0 0;
+    font-family: $font;
+    line-height: 20px;
+    padding: 5px 20px;
+    text-align: center;
+  }
+  .ajax-loader {
+    display: none;
+  }
+}
+
+//BX
+.bx-controls-direction {
+  a {
+    @include center(false, true);
+    width: 34px;
+    height: 34px;
+    z-index: 200;
+    outline: 0;
+    &.bx-prev {
+      left: 0;
+      background-position: 0 0;
+    }
+    &.bx-next {
+      right: 0;
+      background-position: 100% 0;
+    }
+  }
+}
+
+.bx-pager {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  font-size: 0;
+  .bx-pager-item {
+    display: inline-block;
+    a {
+      display: inline-block;
+      vertical-align: top;
+      @include border-radius(50%);
+      width: 10px;
+      height: 10px;
+      margin: 0 3px;
+      opacity: 0.5;
+      background: #fff;
+      &:hover, &.active {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+//PAGE 404
+.error404 {
+  .content {
+    text-align: center;
+    h1 {
+      font-size: 75px;
+      line-height: 1.2;
+      padding-bottom: 40px;
+      font-weight: 400;
+      span {
+        font-size: 100px;
+        line-height: 1.2;
+        color: $color2;
+        font-weight: 700;
+      }
+    }
+    p {
+      font-size: 25px;
+    }
+  }
+}
+
+//MENU BUTTON
+$line: 4px; // The thickness of the button lines, also need to improve -> &:after {top: ?px} !
+$line-position: 18px; // The spacing between lines, also need to improve -> &:after {top: ?px} !
+$button-color: #fff; // The color of button
+
+#menuOpen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #222;
+  height: 50px;
+  display: none;
+  span {
+    @include center(false, true);
+    right: 3%;
+    width: 27px;
+    height: 27px;
+    cursor: pointer;
+    z-index: 300;
+    @include transition();
+    &:before, &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: $line;
+      box-shadow: 0 $line 0 0 $button-color, 0 $line-position 0 0 $button-color;
+      -webkit-box-shadow: 0 $line 0 0 $button-color, 0 $line-position 0 0 $button-color;
+      -moz-box-shadow: 0 $line 0 0 $button-color, 0 $line-position 0 0 $button-color;
+      @include transition();
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      top: 7px; // Need to improve if both $line-thickness and $line-position changed !
+      height: $line;
+      @include box-shadow(0 $line 0 0 $button-color);
+    }
+    &.opened {
+      &:before, &:after {
+        top: 0;
+        left: 0;
+        right: 0;
+        background: $button-color;
+        @include box-shadow(none);
+      }
+      &:before {
+        @include backface-visibility();
+        @include transform(rotate(-45deg) translate(-7px, 7px));
+      }
+      &:after {
+        @include backface-visibility();
+        @include transform(rotate(45deg) translate(7px, 7px));
+      }
+    }
+  }
+}
+
+
+

@@ -1,0 +1,129 @@
+@import "reset";
+
+body {
+  color: $color;
+  font-size: 14px;
+  font-family: $font, sans-serif;
+}
+
+main {
+  overflow: hidden;
+}
+
+.container {
+  margin: 0 auto;
+  width: $pageWidth;
+  max-width: 94%;
+  position: relative;
+}
+
+a {
+  color: $color2;
+  text-decoration: none;
+  @include transition();
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+header {
+  float: left;
+  width: 100%;
+  #logo {
+    float: left;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #mainMenu {
+    ul {
+      font-size: 0;
+      li {
+        display: inline-block;
+        vertical-align: top;
+        a {
+          font-size: 14px;
+        }
+        &:hover a, &.current-menu-item a {
+
+        }
+      }
+    }
+  }
+}
+
+.content {
+  float: left;
+  width: 100%;
+  p {
+    padding-bottom: 20px;
+    line-height: 20px;
+  }
+}
+
+.button {
+  display: inline-block;
+  line-height: 35px;
+  padding: 0 20px;
+  background: $color2;
+  color: #fff;
+  &:hover {
+    opacity: 0.8;
+    text-decoration: none;
+  }
+}
+
+footer {
+  float: left;
+  width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+  #menuOpen {
+    display: block;
+    &.opened {
+      & + #mainMenu {
+        @include transform(translateX(0));
+      }
+    }
+  }
+  #mainMenu {
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    @include transform(translateX(100%));
+    @include transition();
+    background: rgba(26, 26, 26, 0.95);
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    ul {
+      li {
+        display: inline-block;
+        width: 100%;
+        a {
+          display: block;
+          margin: 0;
+          color: #fff;
+          font-size: 18px;
+          padding: 15px 3%;
+          border-bottom: 1px solid #000;
+        }
+        &:hover a {
+          background: none;
+        }
+        &.current-menu-item > a {
+          background: $color2;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+
+}
+
+@media screen and (max-width: 479px) {
+
+}
