@@ -11,6 +11,14 @@ function style_js()
 }
 add_action('wp_enqueue_scripts', 'style_js');
 
+// HTML5 support for IE
+function wp_IEhtml5_js () {
+    global $is_IE;
+    if ($is_IE)
+        echo '<!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><script src="//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]--><!--[if lte IE 9]><link href="'.theme().'/style/animations-ie-fix.css" rel="stylesheet" /><![endif]-->';
+}
+add_action('wp_head', 'wp_IEhtml5_js');
+
 // Custom theme url
 function theme($filepath = NULL){
     return preg_replace( '(https?://)', '//', get_stylesheet_directory_uri() . ($filepath?'/' . $filepath:'') );
