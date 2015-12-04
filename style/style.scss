@@ -17,6 +17,10 @@ main {
   position: relative;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+}
+
 a {
   color: $color2;
   text-decoration: none;
@@ -52,10 +56,6 @@ header {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 400;
-}
-
 .content {
   float: left;
   width: 100%;
@@ -71,6 +71,9 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="search"]
   border: 1px solid #ccc;
   background: #eee;
   padding: 0 10px;
+  &:focus {
+
+  }
 }
 
 textarea {

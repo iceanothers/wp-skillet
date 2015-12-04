@@ -209,27 +209,26 @@ td {
 }
 
 input, select, textarea {
-  @include box-sizing();
   @include transition(all, 0.4s);
   border-radius: 0;
   -webkit-appearance: none;
 }
 
 input[type="submit"], input[type="button"], button {
-  cursor: pointer;
   -webkit-appearance: none;
+  cursor: pointer;
   border: none;
 }
 
 /* Selection */
 ::-moz-selection {
   color: #fff;
-  background: #009bf8
+  background: $color2;
 }
 
 ::selection {
   color: #fff;
-  background: #009bf8
+  background: $color2;
 }
 
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
