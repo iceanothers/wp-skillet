@@ -206,11 +206,6 @@ function my_theme_register_required_plugins()
             'required' => false,
         ),
         array(
-            'name' => 'Duplicate Post',
-            'slug' => 'duplicate-post',
-            'required' => false,
-        ),
-        array(
             'name' => 'Quick Featured Images',
             'slug' => 'quick-featured-images',
             'required' => false,
@@ -264,3 +259,150 @@ function my_theme_register_required_plugins()
     );
     tgmpa($plugins, $config);
 }
+
+/*
+ * Function creates post duplicate as a draft and redirects then to the edit post screen
+ */
+function tt_wp_duplicate_posts(){
+    global $wpdb;
+    if (! ( isset( $_GET['post']) || isset( $_POST['post'])  || ( isset($_REQUEST['action']) && 'tt_wp_duplicate_posts' == $_REQUEST['action'] ) ) ) {
+        wp_die('No post to duplicate has been supplied!');
+    }
+
+    /*
+     * get the original post id
+     */
+    $post_id = (isset($_GET['post']) ? $_GET['post'] : $_POST['post']);
+    /*
+     * and all the original post data then
+     */
+    $post = get_post( $post_id );
+
+    /*
+     * if you don't want current user to be the new post author,
+     * then change next couple of lines to this: $new_post_author = $post->post_author;
+     */
+    $current_user = wp_get_current_user();
+    $new_post_author = $current_user->ID;
+
+    /*
+     * if post data exists, create the post duplicate
+     */
+    if (isset( $post ) && $post != null) {
+
+        /*
+         * new post data array
+         */
+        $args = array(
+            'comment_status' => $post->comment_status,
+            'ping_status'    => $post->ping_status,
+            'post_author'    => $new_post_author,
+            'post_content'   => $post->post_content,
+            'post_excerpt'   => $post->post_excerpt,
+            'post_name'      => $post->post_name,
+            'post_parent'    => $post->post_parent,
+            'post_password'  => $post->post_password,
+            'post_status'    => $post->post_status,
+            'post_title'     => $post->post_title,
+            'post_type'      => $post->post_type,
+            'to_ping'        => $post->to_ping,
+            'menu_order'     => $post->menu_order
+        );
+
+        /*
+         * insert the post by wp_insert_post() function
+         */
+        $new_post_id = wp_insert_post( $args );
+
+        /*
+         * get all current post terms ad set them to the new post draft
+         */
+        $taxonomies = get_object_taxonomies($post->post_type); // returns array of taxonomy names for post type, ex array("category", "post_tag");
+        foreach ($taxonomies as $taxonomy) {
+            $post_terms = wp_get_object_terms($post_id, $taxonomy, array('fields' => 'slugs'));
+            wp_set_object_terms($new_post_id, $post_terms, $taxonomy, false);
+        }
+
+        /*
+         * duplicate all post meta just in two SQL queries
+         */
+        $post_meta_infos = $wpdb->get_results("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$post_id");
+        if (count($post_meta_infos)!=0) {
+            $sql_query = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
+            foreach ($post_meta_infos as $meta_info) {
+                $meta_key = $meta_info->meta_key;
+                $meta_value = addslashes($meta_info->meta_value);
+                $sql_query_sel[]= "SELECT $new_post_id, '$meta_key', '$meta_value'";
+            }
+            $sql_query.= implode(" UNION ALL ", $sql_query_sel);
+            $wpdb->query($sql_query);
+        }
+
+
+        /*
+         * finally, redirect to the edit post screen for the new draft
+         */
+        wp_redirect( admin_url( 'post.php?action=edit&post=' . $new_post_id ) );
+        exit;
+    } else {
+        wp_die('Post creation failed, could not find original post: ' . $post_id);
+    }
+}
+add_action( 'admin_action_tt_wp_duplicate_posts', 'tt_wp_duplicate_posts' );
+
+/*
+ * Add the duplicate link to action list for post_row_actions
+ */
+function tt_wp_duplicate_post_link( $actions, $post ) {
+    if (current_user_can('edit_posts')) {
+        $actions['duplicate'] = '<a href="admin.php?action=tt_wp_duplicate_posts&amp;post=' . $post->ID . '" rel="permalink"><span class="dashicons dashicons-arrow-left-alt2" style="font-size: 8px;vertical-align: baseline"></span>Duplicate<span class="dashicons dashicons-arrow-right-alt2" style="font-size: 8px;vertical-align: baseline"></span></a>';
+    }
+    return $actions;
+}
+
+add_filter('post_row_actions', 'tt_wp_duplicate_post_link', 10, 2 );
+add_filter('page_row_actions', 'tt_wp_duplicate_post_link', 10, 2);
+
+
+/* ===== qTranslate/qTranslate X  ===== */
+if(defined('QTX_VERSION')) {
+    remove_action('wp_head', 'qtranxf_wp_head_meta_generator');
+    remove_action('wp_head', 'qtranxf_head', 10, 0);
+    remove_action('wp_head', 'qtranxf_wp_head', 10, 0);
+    remove_action('wp_head', 'qtrans_header', 10, 0);
+    // Convert blogurl
+    function qtrans_home_url($url = '') {
+        return qtranxf_convertURL(site_url($url));
+    }
+    // Custom Links fix
+    add_filter('walker_nav_menu_start_el', 'qtrans_in_nav_el', 10, 4);
+    function qtrans_in_nav_el($item_output, $item, $depth, $args){
+        $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+        $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
+        $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
+        // Determine integration with qTranslate Plugin
+        if (function_exists('qtranxf_convertURL')) {
+            $attributes .= ! empty( $item->url ) ? ' href="' . qtranxf_convertURL(esc_attr( $item->url )) .'"' : '';
+        } else {
+            $attributes .= ! empty( $item->url ) ? ' href="' . esc_attr( $item->url ) .'"' : '';
+        }
+        $item_output = $args->before;
+        $item_output .= '<a'. $attributes .'>';
+        $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+        $item_output .= '</a>';
+        $item_output .= $args->after;
+        return $item_output;
+    }
+}
+
+//Show empty categories in category widget
+function show_empty_categories_links($args) {
+    $args['hide_empty'] = 0;
+    return $args;
+}
+add_filter('widget_categories_args','show_empty_categories_links');
+//remove empty title from widget
+function foo_widget_title($title) {
+    return $title == '&nbsp;' ? '' : $title;
+}
+add_filter('widget_title', 'foo_widget_title');

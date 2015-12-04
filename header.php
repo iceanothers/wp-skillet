@@ -1,7 +1,7 @@
 <?php header('Expires: '.gmdate('D, d M Y H:i:s \G\M\T', time() + 3600));
 header('Content-Type: text/html; charset=utf-8');
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
-header('X-UA-Compatible: IE=Edge,chrome=1');
+header('X-UA-Compatible: IE=Edge');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +23,7 @@ header('X-UA-Compatible: IE=Edge,chrome=1');
     <header>
         <div class="container">
             <a id="logo" href="<?php echo get_option('home') ?>">
-                <img src="<?php theme(); ?>/images/logo.png" alt="logo">
+                <img src="<?php theme('images/logo.png'); ?>" alt="logo">
             </a>
             <div id="menuOpen">Menu <span></span></div>
             <nav id="mainMenu">
