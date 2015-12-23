@@ -265,6 +265,12 @@ div.wpcf7 .ajax-loader {
   background: #222;
   height: 50px;
   display: none; }
+  #menuOpen p {
+    margin-left: 3%;
+    color: #fff;
+    font-size: 24px;
+    text-transform: uppercase;
+    line-height: 50px; }
   #menuOpen span {
     position: absolute;
     top: 50%;
@@ -401,7 +407,8 @@ textarea {
   line-height: 35px;
   padding: 0 20px;
   background: #0C59AF;
-  color: #fff; }
+  color: #fff;
+  font-family: Arial; }
   .button:hover {
     opacity: 0.8;
     text-decoration: none; }
