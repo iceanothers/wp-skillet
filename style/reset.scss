@@ -99,7 +99,8 @@
     @content;
   }
 }
-@mixin animation ($delay, $duration, $animation) {
+
+@mixin animation($delay, $duration, $animation) {
   -webkit-animation-delay: $delay;
   -webkit-animation-duration: $duration;
   -webkit-animation-name: $animation;
@@ -234,6 +235,7 @@ input[type="submit"], input[type="button"], button {
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   color: #707070;
 }
+
 input::-moz-placeholder, textarea::-moz-placeholder {
   color: #707070;
   opacity: 1;
@@ -307,31 +309,51 @@ img {
   width: 0
 }
 
+//Fullframe
+.fullframe {
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+  padding-bottom: 56.5%;
+  position: relative;
+  z-index: 0;
+  > {
+    iframe, object, embed {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: -1
+    }
+  }
+}
+
 //SELECT
 .selbel_w {
-  position:relative;
-  display:block;
-  width:100%;
+  position: relative;
+  display: block;
+  width: 100%;
   font: 400 14px/40px $font;
   height: 40px;
   select {
-    width:100%;
-    height:100%;
-    cursor:pointer;
-    position:relative;
-    display:block;
-    z-index:1;
-    opacity:0;
-    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+    display: block;
+    z-index: 1;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     + span {
-      position:absolute;
-      top:0;
-      left:0;
-      right:0;
-      bottom:0;
-      background:#fff;
-      color:#555;
-      padding:0 10px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #fff;
+      color: #555;
+      padding: 0 10px;
       @include border-radius(5px);
       border: 1px solid #eee;
       &:after {
@@ -358,7 +380,7 @@ img {
 //CONTACT FORM
 div.wpcf7 {
   .wpcf7-form-control-wrap {
-    display: block!important;
+    display: block !important;
     margin-bottom: 20px;
     clear: both;
   }
@@ -457,9 +479,12 @@ div.wpcf7 {
 }
 
 //MENU BUTTON
-$line: 4px; // The thickness of the button lines, also need to improve -> &:after {top: ?px} !
-$line-position: 18px; // The spacing between lines, also need to improve -> &:after {top: ?px} !
-$button-color: #fff; // The color of button
+$line: 4px;
+// The thickness of the button lines, also need to improve -> &:after {top: ?px} !
+$line-position: 18px;
+// The spacing between lines, also need to improve -> &:after {top: ?px} !
+$button-color: #fff;
+// The color of button
 
 #menuOpen {
   position: absolute;
