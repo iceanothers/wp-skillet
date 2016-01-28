@@ -47,6 +47,7 @@ header {
         vertical-align: top;
         a {
           font-size: 14px;
+          display: block;
         }
         &:hover a, &.current-menu-item a {
 
@@ -110,7 +111,7 @@ footer {
     }
   }
   #mainMenu {
-    position: fixed;
+    position: absolute;
     top: 50px;
     width: 100%;
     @include transform(translateX(100%));

@@ -127,6 +127,21 @@ img {
   vertical-align: middle;
   width: 0; }
 
+.fullframe {
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+  padding-bottom: 56.5%;
+  position: relative;
+  z-index: 0; }
+  .fullframe > iframe, .fullframe > object, .fullframe > embed {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1; }
+
 .selbel_w {
   position: relative;
   display: block;
@@ -382,7 +397,8 @@ header {
       display: inline-block;
       vertical-align: top; }
       #mainMenu ul li a {
-        font-size: 14px; } }
+        font-size: 14px;
+        display: block; } }
 .content {
   float: left;
   width: 100%; }
@@ -428,7 +444,7 @@ footer {
       transform: translateX(0); }
 
   #mainMenu {
-    position: fixed;
+    position: absolute;
     top: 50px;
     width: 100%;
     -webkit-transform: translateX(100%);
