@@ -221,17 +221,6 @@ input[type="submit"], input[type="button"], button {
   border: none;
 }
 
-/* Selection */
-::-moz-selection {
-  color: #fff;
-  background: $color2;
-}
-
-::selection {
-  color: #fff;
-  background: $color2;
-}
-
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   color: #707070;
 }
@@ -294,19 +283,6 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
-}
-
-.valign {
-  display: inline-block;
-  vertical-align: middle;
-  max-width: 94%
-}
-
-.vfix {
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-  width: 0
 }
 
 //Fullframe
@@ -403,6 +379,7 @@ div.wpcf7 {
     width: 100%;
     margin: 10px 0 0 0;
     font-family: $font;
+    font-size: 14px;
     line-height: 20px;
     padding: 5px 20px;
     text-align: center;
@@ -487,13 +464,32 @@ $button-color: #fff;
 // The color of button
 
 #menuOpen {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   background: #222;
   height: 50px;
   display: none;
+  &.opened {
+    span {
+      &:before, &:after {
+        top: 0;
+        left: 0;
+        right: 0;
+        background: $button-color;
+        @include box-shadow(none);
+      }
+      &:before {
+        @include backface-visibility();
+        @include transform(rotate(-45deg) translate(-7px, 7px));
+      }
+      &:after {
+        @include backface-visibility();
+        @include transform(rotate(45deg) translate(7px, 7px));
+      }
+    }
+  }
   p {
     margin-left: 3%;
     color: #fff;
@@ -527,23 +523,6 @@ $button-color: #fff;
       top: 7px; // Need to improve if both $line-thickness and $line-position changed !
       height: $line;
       @include box-shadow(0 $line 0 0 $button-color);
-    }
-    &.opened {
-      &:before, &:after {
-        top: 0;
-        left: 0;
-        right: 0;
-        background: $button-color;
-        @include box-shadow(none);
-      }
-      &:before {
-        @include backface-visibility();
-        @include transform(rotate(-45deg) translate(-7px, 7px));
-      }
-      &:after {
-        @include backface-visibility();
-        @include transform(rotate(45deg) translate(7px, 7px));
-      }
     }
   }
 }

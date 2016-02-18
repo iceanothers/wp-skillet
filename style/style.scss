@@ -4,10 +4,15 @@ body {
   color: $color;
   font-size: 14px;
   font-family: $font, sans-serif;
+  @include flex-direction(column);
+  @include flexbox();
+  min-height: 100vh;
 }
 
 main {
   overflow: hidden;
+  @include flex(1, 0, auto);
+  width: 100%;
 }
 
 .container {
@@ -31,11 +36,7 @@ a {
 }
 
 header {
-  float: left;
-  width: 100%;
-  #logo {
-    float: left;
-  }
+
 }
 
 @media screen and (min-width: 1024px) {
@@ -58,11 +59,9 @@ header {
 }
 
 .content {
-  float: left;
-  width: 100%;
   p {
     padding-bottom: 20px;
-    line-height: 20px;
+    line-height: 1.5;
   }
 }
 
@@ -72,6 +71,7 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="search"]
   border: 1px solid #ccc;
   background: #eee;
   padding: 0 10px;
+  font-family: $font;
   &:focus {
 
   }
@@ -97,8 +97,7 @@ textarea {
 }
 
 footer {
-  float: left;
-  width: 100%;
+
 }
 
 @media screen and (max-width: 1024px) {

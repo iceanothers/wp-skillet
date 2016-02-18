@@ -20,7 +20,6 @@ $(document).ready(function () {
 
     $("select").selbel();
     stretch();
-    sonix();
 
     $(this).on('click', '.wpcf7-not-valid-tip', function () {
         $(this).prev().trigger('focus');
@@ -30,7 +29,6 @@ $(document).ready(function () {
     });
 
     $(window).bind("resize", function () {
-        sonix();
         stretch();
     });
 });
@@ -40,18 +38,6 @@ function stretch(){
         if ($(this).attr('data-bg').length) {
             $(this).backstretch($(this).attr('data-bg'));
         }
-    });
-}
-
-function sonix(){
-    $("footer").removeAttr('style');
-    var footer = $("footer").height();
-    $("footer").css({
-        "margin-top": -footer,
-        "height": footer
-    });
-    $(".pusher").css({
-        "height": footer
     });
 }
 
