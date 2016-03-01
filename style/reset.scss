@@ -269,6 +269,19 @@ img {
   display: block;
 }
 
+.valign {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 94%
+}
+
+.vfix {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  width: 0
+}
+
 //Fullframe
 .fullframe {
   height: 0;
