@@ -355,7 +355,16 @@
   }
   align-content: $value;
 }
-
+/*
+Flexbox grid @mixin
+EXAMPLE
+.flexbox {
+    @include boxGrid(5, 4%);
+}
+*/
+@function strip-units($value) {
+  @return ($value / ($value * 0 + 1));
+}
 @mixin boxGrid($columnNumber, $spacingPercent) {
   $contentPercent: 100%;
   $sideMargin: ($spacingPercent/2);
