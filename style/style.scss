@@ -1,15 +1,17 @@
 @import "reset", "flexbox";
 
+html {
+  font: 400 #{$font-base}/1.5714 $f, sans-serif;
+}
+
 body {
-  color: $color;
-  font-size: 14px;
-  font-family: $font, sans-serif;
+  color: $c;
   @include flex-direction(column);
   @include flexbox();
   min-height: 100vh;
 }
 
-main {
+#main {
   overflow: hidden;
   @include flex(1, 0, auto);
   width: 100%;
@@ -17,7 +19,7 @@ main {
 
 .container {
   margin: 0 auto;
-  width: $pageWidth;
+  width: $w;
   max-width: 94%;
   position: relative;
 }
@@ -27,7 +29,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-  color: $color2;
+  color: $bg;
   text-decoration: none;
   @include transition();
   &:hover {
@@ -36,7 +38,6 @@ a {
 }
 
 header {
-
 }
 
 @media screen and (min-width: 1024px) {
@@ -71,7 +72,7 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="search"]
   border: 1px solid #ccc;
   background: #eee;
   padding: 0 10px;
-  font-family: $font;
+  font-family: $f;
   &:focus {
 
   }
@@ -87,9 +88,9 @@ textarea {
   display: inline-block;
   line-height: 35px;
   padding: 0 20px;
-  background: $color2;
+  background: $bg;
   color: #fff;
-  font-family: $font;
+  font-family: $f;
   &:hover {
     opacity: 0.8;
     text-decoration: none;
@@ -97,7 +98,6 @@ textarea {
 }
 
 footer {
-
 }
 
 @media screen and (max-width: 1024px) {
@@ -135,7 +135,7 @@ footer {
           background: none;
         }
         &.current-menu-item > a {
-          background: $color2;
+          background: $bg;
         }
       }
     }

@@ -18,7 +18,7 @@ header('X-UA-Compatible: IE=Edge');
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-<main>
+<div id="main">
     <header>
         <div class="container">
             <a id="logo" href="<?php echo get_option('home') ?>">

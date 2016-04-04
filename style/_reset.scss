@@ -122,6 +122,26 @@
   animation-fill-mode: forwards; /* this prevents the animation from restarting! */
 }
 
+// responsive fonts + line-heights + padding & margin !!!
+$font-base: 14px;
+/// Strips the unit from a number.
+@function strip-units($value) {
+  @return ($value / ($value * 0 + 1));
+}
+// Convert pixels to rems
+// eg. for a relational value of 12px write rem(12)
+// Assumes $font-base is the font-size of <html>
+@function rem($pxval) {
+  @if not unitless($pxval) {
+    $pxval: strip-units($pxval);
+  }
+  $base: $font-base;
+  @if not unitless($base) {
+    $base: strip-units($base);
+  }
+  @return ($pxval / $base) * 1rem;
+}
+
 @mixin declare-font-face($font-family, $font-filename, $font-weight: normal, $font-style: normal) {
   @font-face {
     font-family: '#{$font-family}';
@@ -150,10 +170,10 @@
   /* Using @include svg-font-face('FontName', 'font-filename', 400); */
 }
 
-$pageWidth: 1140px;
-$color: #333333;
-$color2: #0C59AF;
-$font: Arial;
+$w: 1140px;
+$c: #333333;
+$bg: #0C59AF;
+$f: Arial;
 
 //RESET
 * {
@@ -307,7 +327,7 @@ img {
   position: relative;
   display: block;
   width: 100%;
-  font: 400 14px/40px $font;
+  font: 400 14px/40px $f;
   height: 40px;
   select {
     width: 100%;
@@ -366,7 +386,7 @@ div.wpcf7 {
     left: 0;
     right: 0;
     cursor: pointer;
-    font-family: $font;
+    font-family: $f;
     height: 30px;
     line-height: 30px;
     padding: 0 10px;
@@ -375,7 +395,7 @@ div.wpcf7 {
     float: left;
     width: 100%;
     margin: 10px 0 0 0;
-    font-family: $font;
+    font-family: $f;
     font-size: 14px;
     line-height: 20px;
     padding: 5px 20px;
@@ -442,7 +462,7 @@ div.wpcf7 {
       span {
         font-size: 100px;
         line-height: 1.2;
-        color: $color2;
+        color: $bg;
         font-weight: 700;
       }
     }

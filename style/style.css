@@ -57,15 +57,6 @@ input[type="submit"], input[type="button"], button {
   cursor: pointer;
   border: none; }
 
-/* Selection */
-::-moz-selection {
-  color: #fff;
-  background: #0C59AF; }
-
-::selection {
-  color: #fff;
-  background: #0C59AF; }
-
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   color: #707070; }
 
@@ -80,19 +71,7 @@ hr {
   display: block;
   height: 0; }
 
-body, html {
-  height: 100%; }
-
-main {
-  min-height: 100%; }
-
-* html main {
-  height: 100%; }
-
-.pusher {
-  clear: both; }
-
-article, aside, details, figcaption, figure, footer, header, nav, section, summary {
+article, aside, details, figcaption, figure, footer, header, nav, section, summary, main {
   display: block; }
 
 .alignleft {
@@ -209,6 +188,7 @@ div.wpcf7 .wpcf7-response-output {
   width: 100%;
   margin: 10px 0 0 0;
   font-family: Arial;
+  font-size: 14px;
   line-height: 20px;
   padding: 5px 20px;
   text-align: center; }
@@ -273,13 +253,41 @@ div.wpcf7 .ajax-loader {
     font-size: 25px; }
 
 #menuOpen {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   background: #222;
   height: 50px;
   display: none; }
+  #menuOpen.opened span:before, #menuOpen.opened span:after {
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none; }
+  #menuOpen.opened span:before {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: rotate(-45deg) translate(-7px, 7px);
+    -moz-transform: rotate(-45deg) translate(-7px, 7px);
+    -ms-transform: rotate(-45deg) translate(-7px, 7px);
+    -o-transform: rotate(-45deg) translate(-7px, 7px);
+    transform: rotate(-45deg) translate(-7px, 7px); }
+  #menuOpen.opened span:after {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: rotate(45deg) translate(7px, 7px);
+    -moz-transform: rotate(45deg) translate(7px, 7px);
+    -ms-transform: rotate(45deg) translate(7px, 7px);
+    -o-transform: rotate(45deg) translate(7px, 7px);
+    transform: rotate(45deg) translate(7px, 7px); }
   #menuOpen p {
     margin-left: 3%;
     color: #fff;
@@ -327,42 +335,41 @@ div.wpcf7 .ajax-loader {
       -ms-box-shadow: 0 4px 0 0 #fff;
       -o-box-shadow: 0 4px 0 0 #fff;
       box-shadow: 0 4px 0 0 #fff; }
-    #menuOpen span.opened:before, #menuOpen span.opened:after {
-      top: 0;
-      left: 0;
-      right: 0;
-      background: #fff;
-      -webkit-box-shadow: none;
-      -moz-box-shadow: none;
-      -ms-box-shadow: none;
-      -o-box-shadow: none;
-      box-shadow: none; }
-    #menuOpen span.opened:before {
-      -webkit-backface-visibility: hidden;
-      -moz-backface-visibility: hidden;
-      backface-visibility: hidden;
-      -webkit-transform: rotate(-45deg) translate(-7px, 7px);
-      -moz-transform: rotate(-45deg) translate(-7px, 7px);
-      -ms-transform: rotate(-45deg) translate(-7px, 7px);
-      -o-transform: rotate(-45deg) translate(-7px, 7px);
-      transform: rotate(-45deg) translate(-7px, 7px); }
-    #menuOpen span.opened:after {
-      -webkit-backface-visibility: hidden;
-      -moz-backface-visibility: hidden;
-      backface-visibility: hidden;
-      -webkit-transform: rotate(45deg) translate(7px, 7px);
-      -moz-transform: rotate(45deg) translate(7px, 7px);
-      -ms-transform: rotate(45deg) translate(7px, 7px);
-      -o-transform: rotate(45deg) translate(7px, 7px);
-      transform: rotate(45deg) translate(7px, 7px); }
+
+/*
+Flexbox grid @mixin
+EXAMPLE
+.flexbox {
+    @include boxGrid(5, 4%);
+}
+*/
+html {
+  font: 400 14px/1.5714 Arial, sans-serif; }
 
 body {
   color: #333333;
-  font-size: 14px;
-  font-family: Arial, sans-serif; }
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh; }
 
-main {
-  overflow: hidden; }
+#main {
+  overflow: hidden;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 auto;
+  -moz-box-flex: 1;
+  -moz-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  width: 100%; }
 
 .container {
   margin: 0 auto;
@@ -384,12 +391,6 @@ a {
   a:hover {
     text-decoration: underline; }
 
-header {
-  float: left;
-  width: 100%; }
-  header #logo {
-    float: left; }
-
 @media screen and (min-width: 1024px) {
   #mainMenu ul {
     font-size: 0; }
@@ -399,19 +400,17 @@ header {
       #mainMenu ul li a {
         font-size: 14px;
         display: block; } }
-.content {
-  float: left;
-  width: 100%; }
-  .content p {
-    padding-bottom: 20px;
-    line-height: 20px; }
+.content p {
+  padding-bottom: 20px;
+  line-height: 1.5; }
 
 input[type="text"], input[type="email"], input[type="tel"], input[type="search"], input[type="password"], textarea {
   height: 30px;
   width: 100%;
   border: 1px solid #ccc;
   background: #eee;
-  padding: 0 10px; }
+  padding: 0 10px;
+  font-family: Arial; }
 
 textarea {
   resize: none;
@@ -428,10 +427,6 @@ textarea {
   .button:hover {
     opacity: 0.8;
     text-decoration: none; }
-
-footer {
-  float: left;
-  width: 100%; }
 
 @media screen and (max-width: 1024px) {
   #menuOpen {
