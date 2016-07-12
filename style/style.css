@@ -6,7 +6,8 @@
   padding: 0;
   outline: 0;
   box-sizing: border-box;
-  -webkit-box-sizing: border-box; }
+  -webkit-box-sizing: border-box;
+  min-width: 1px; }
 
 html {
   -webkit-font-smoothing: antialiased;
@@ -439,7 +440,7 @@ textarea {
       transform: translateX(0); }
 
   #mainMenu {
-    position: absolute;
+    position: fixed;
     top: 50px;
     width: 100%;
     -webkit-transform: translateX(100%);

@@ -6,16 +6,13 @@ $(document).ready(function () {
         $(this).toggleClass("opened");
     });
 
-    /*$("#mainSlider .slider").bxSlider({
-        pager: false,
-        controls: false,
-        prevText: '',
-        nextText: '',
-        breaks: [{
-            screen:0, slides:1
-        },{
-            screen:1024, slides:2
-        }]
+    <!-- Initialize Swiper -->
+    /*var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 30
     });*/
 
     $("select").selbel();

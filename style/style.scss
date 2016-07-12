@@ -112,7 +112,7 @@ footer {
     }
   }
   #mainMenu {
-    position: absolute;
+    position: fixed;
     top: 50px;
     width: 100%;
     @include transform(translateX(100%));

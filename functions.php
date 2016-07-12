@@ -2,12 +2,14 @@
 
 // Recommended plugins installer
 require_once 'include/plugins/init.php';
+require_once('include/wpadmin/admin-addons.php');
 
 function style_js()
 {
     wp_enqueue_script('lib', get_template_directory_uri() . '/js/lib.js', array('jquery'), '1.0', true);
     wp_enqueue_script('logic', get_template_directory_uri() . '/js/logic.js', array('jquery'), '1.0', true);
     wp_enqueue_style('style', get_template_directory_uri() . '/style/style.css');
+    wp_enqueue_style('swiper', get_template_directory_uri() . '/style/swiper.css');
 }
 add_action('wp_enqueue_scripts', 'style_js');
 
