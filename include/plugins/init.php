@@ -186,13 +186,18 @@ function my_theme_register_required_plugins()
             'required' => true,
         ),
         array(
-            'name' => 'Post Thumbnail Editor',
-            'slug' => 'post-thumbnail-editor',
-            'required' => true,
+            'name' => 'Yoast SEO',
+            'slug' => 'wordpress-seo',
+            'required' => false,
         ),
         array(
             'name' => 'TinyMCE Advanced',
             'slug' => 'tinymce-advanced',
+            'required' => false,
+        ),
+        array(
+            'name' => 'Add Logo to Admin',
+            'slug' => 'add-logo-to-admin',
             'required' => false,
         ),
         array(
@@ -201,8 +206,8 @@ function my_theme_register_required_plugins()
             'required' => false,
         ),
         array(
-            'name' => 'Add Logo to Admin',
-            'slug' => 'add-logo-to-admin',
+            'name' => 'Post Thumbnail Editor',
+            'slug' => 'post-thumbnail-editor',
             'required' => false,
         ),
         array(

@@ -407,50 +407,6 @@ div.wpcf7 {
   }
 }
 
-//BX
-.bx-controls-direction {
-  a {
-    @include center(false, true);
-    width: 34px;
-    height: 34px;
-    z-index: 200;
-    outline: 0;
-    &.bx-prev {
-      left: 0;
-      background-position: 0 0;
-    }
-    &.bx-next {
-      right: 0;
-      background-position: 100% 0;
-    }
-  }
-}
-
-.bx-pager {
-  position: absolute;
-  bottom: 30px;
-  width: 100%;
-  left: 0;
-  text-align: center;
-  font-size: 0;
-  .bx-pager-item {
-    display: inline-block;
-    a {
-      display: inline-block;
-      vertical-align: top;
-      @include border-radius(50%);
-      width: 10px;
-      height: 10px;
-      margin: 0 3px;
-      opacity: 0.5;
-      background: #fff;
-      &:hover, &.active {
-        opacity: 1;
-      }
-    }
-  }
-}
-
 //PAGE 404
 .error404 {
   .content {
