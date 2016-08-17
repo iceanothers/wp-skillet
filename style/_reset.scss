@@ -321,7 +321,7 @@ img {
       background: #fff;
       color: #555;
       padding: 0 10px;
-      @include border-radius(5px);
+      border-radius: 5px;
       border: 1px solid #eee;
       &:after {
         content: '';
