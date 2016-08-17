@@ -33,6 +33,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 
+p {
+  padding-bottom: 20px;
+  line-height: 1.5;
+}
+
 a {
   color: $bg;
   text-decoration: none;
@@ -66,14 +71,11 @@ header {
 }
 
 .content {
-  p {
-    padding-bottom: 20px;
-    line-height: 1.5;
-  }
+
 }
 
 input[type="text"], input[type="email"], input[type="tel"], input[type="search"], input[type="password"], textarea {
-  height: 30px;
+  height: $inputH;
   width: 100%;
   border: 1px solid #ccc;
   background: #eee;
@@ -97,6 +99,10 @@ textarea {
   background: $bg;
   color: #fff;
   font-family: $f;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
   &:hover {
     opacity: 0.8;
     text-decoration: none;
