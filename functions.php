@@ -42,10 +42,10 @@ foreach ( $reg_sidebars as $id => $name ) {
         array (
             'name'          => __( $name ),
             'id'            => $id,
-            'before_widget' => '<div class="widget cfx %2$s">',
+            'before_widget' => '<div class="widget %2$s">',
             'after_widget'  => '</div>',
-            'before_title'  => '<mark class="widget-title">',
-            'after_title'   => '</mark>',
+            'before_title'  => '<h2 class="widgetTitle">',
+            'after_title'   => '</h2>',
         )
     );
 }
@@ -63,12 +63,12 @@ if(function_exists('acf_add_options_page') ) {
 add_theme_support( 'post-thumbnails' );
 
 //images sizes
-//add_image_size( 'image_name', 'x', 'y', true );
+add_image_size( 'free', '1920', '', true );
 
 //light function fo wp_get_attachment_image_src()
 function image_src($id, $size = 'full', $background_image = false, $height = false) {
     if ($image = wp_get_attachment_image_src($id, $size, true)) {
-        return $background_image ? 'background-image: url('.$image[0].');' . ($height?'height:'.$image[2].'px':'') : $image[0];
+        return $background_image ? 'background-image: url('.$image[0].');' . ($height?'min-height:'.$image[2].'px':'') : $image[0];
     }
 }
 
@@ -209,22 +209,6 @@ function clear_nav_menu_item_id($id, $item, $args) {
     return "";
 }
 
-//excerpt custom
-function short_text($post_id, $num){
-    $the_post = get_post($post_id); //Gets post ID
-    $the_excerpt = $the_post->post_content; //Gets post_content to be used as a basis for the excerpt
-    $excerpt_length = $num; //Sets excerpt length by word count
-    $the_excerpt = strip_tags(strip_shortcodes($the_excerpt)); //Strips tags and images
-    $words = explode(' ', $the_excerpt, $excerpt_length + 1);
-    if(count($words) > $excerpt_length) :
-        array_pop($words);
-        array_push($words, '…');
-        $the_excerpt = implode(' ', $words);
-    endif;
-    $the_excerpt = '<p>' . $the_excerpt . '</p>';
-    return $the_excerpt;
-}
-
 function content_btn($atts,$content){
     extract(shortcode_atts(array(
         'text' => 'Learn More',
@@ -290,5 +274,30 @@ if(defined('WPCF7_VERSION')) {
     }
     add_filter( 'wpcf7_form_elements', 'maybe_reset_autop' );
 }
+
+/* ACF Repeater Styles */
+function acf_repeater_even() {
+    $scheme = get_user_option( 'admin_color' );
+    $color = '';
+    if($scheme == 'fresh') {
+        $color = '#0073aa';
+    } else if($scheme == 'light') {
+        $color = '#d64e07';
+    } else if($scheme == 'blue') {
+        $color = '#52accc';
+    } else if($scheme == 'coffee') {
+        $color = '#59524c';
+    } else if($scheme == 'ectoplasm') {
+        $color = '#523f6d';
+    } else if($scheme == 'midnight') {
+        $color = '#e14d43';
+    } else if($scheme == 'ocean') {
+        $color = '#738e96';
+    } else if($scheme == 'sunrise') {
+        $color = '#dd823b';
+    }
+    echo '<style>.acf-repeater > table > tbody > tr:nth-child(even) > td.order {color: #fff !important;background-color: '.$color.' !important; text-shadow: none}.acf-fc-layout-handle {color: #fff !important;background-color: #23282d!important; text-shadow: none}</style>';
+}
+add_action('admin_footer', 'acf_repeater_even');
 
 ?>

@@ -29,8 +29,15 @@ body {
   @include justify-content(space-between);
 }
 
+.alc {
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
+  padding-bottom: 20px;
 }
 
 p {
@@ -48,7 +55,8 @@ a {
 }
 
 header {
-
+  position: relative;
+  z-index: 100;
 }
 
 @media screen and (min-width: 1024px) {
@@ -71,7 +79,23 @@ header {
 }
 
 .content {
-
+  ul {
+    margin: 0 0 20px 15px;
+    li {
+      padding: 5px 0 5px 15px;
+      position: relative;
+      &:before {
+        content: "";
+        background: $bg;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        position: absolute;
+        top: 15px;
+        left: 0;
+      }
+    }
+  }
 }
 
 input[type="text"], input[type="email"], input[type="tel"], input[type="search"], input[type="password"], textarea {
@@ -81,6 +105,7 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="search"]
   background: #eee;
   padding: 0 10px;
   font-family: $f;
+  font-size: rem(14);
   &:focus {
 
   }
@@ -94,12 +119,12 @@ textarea {
 
 .button {
   display: inline-block;
-  line-height: 35px;
-  padding: 0 20px;
+  line-height: rem(40);
+  padding: 0 rem(20);
+  font-size: rem(14);
   background: $bg;
   color: #fff;
   font-family: $f;
-  font-size: 14px;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
