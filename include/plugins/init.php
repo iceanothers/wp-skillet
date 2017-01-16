@@ -196,6 +196,11 @@ function my_theme_register_required_plugins()
             'required' => false,
         ),
         array(
+            'name' => 'Change Case',
+            'slug' => 'change-case-for-tinymce',
+            'required' => false,
+        ),
+        array(
             'name' => 'Add Logo to Admin',
             'slug' => 'add-logo-to-admin',
             'required' => false,

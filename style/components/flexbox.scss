@@ -355,13 +355,7 @@
   }
   align-content: $value;
 }
-/*
-Flexbox grid @mixin
-EXAMPLE
-.flexbox {
-    @include boxGrid(5, 4%);
-}
-*/
+
 @function strip-units($value) {
   @return ($value / ($value * 0 + 1));
 }
@@ -373,7 +367,7 @@ EXAMPLE
   @include flex-flow(wrap);
   @include transition();
   @include flexbox();
-  margin: #{0} -$sideMargin;
+  margin: #{0} -#{$sideMargin};
   width: $contentPercent + $spacingPercent;
   > * {
     width: ($contentPercent/$columnNumber) - $spacingPercent;
