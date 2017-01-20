@@ -74,11 +74,3 @@ b.params.hashnav&&b.hashnav&&b.hashnav.init(),b.params.a11y&&b.a11y&&b.a11y.init
         });
     };
 })(jQuery);
-
-//WPCF7
-$(this).on('click', '.wpcf7-not-valid-tip', function () {
-    $(this).prev().trigger('focus');
-    $(this).fadeOut(500, function () {
-        $(this).remove();
-    });
-});

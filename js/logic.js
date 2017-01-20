@@ -17,6 +17,14 @@ $(document).ready(function () {
 
     $("select").selbel();
 
+    //WPCF7
+    $(this).on('click', '.wpcf7-not-valid-tip', function () {
+        $(this).prev().trigger('focus');
+        $(this).fadeOut(500, function () {
+            $(this).remove();
+        });
+    });
+
     $(window).bind("resize", function () {
 
     });
