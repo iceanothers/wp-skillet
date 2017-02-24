@@ -17,6 +17,789 @@
 b.params.hashnav&&b.hashnav&&b.hashnav.init(),b.params.a11y&&b.a11y&&b.a11y.init(),b.emit("onInit",b)},b.cleanupStyles=function(){b.container.removeClass(b.classNames.join(" ")).removeAttr("style"),b.wrapper.removeAttr("style"),b.slides&&b.slides.length&&b.slides.removeClass([b.params.slideVisibleClass,b.params.slideActiveClass,b.params.slideNextClass,b.params.slidePrevClass].join(" ")).removeAttr("style").removeAttr("data-swiper-column").removeAttr("data-swiper-row"),b.paginationContainer&&b.paginationContainer.length&&b.paginationContainer.removeClass(b.params.paginationHiddenClass),b.bullets&&b.bullets.length&&b.bullets.removeClass(b.params.bulletActiveClass),b.params.prevButton&&a(b.params.prevButton).removeClass(b.params.buttonDisabledClass),b.params.nextButton&&a(b.params.nextButton).removeClass(b.params.buttonDisabledClass),b.params.scrollbar&&b.scrollbar&&(b.scrollbar.track&&b.scrollbar.track.length&&b.scrollbar.track.removeAttr("style"),b.scrollbar.drag&&b.scrollbar.drag.length&&b.scrollbar.drag.removeAttr("style"))},b.destroy=function(e,a){b.detachEvents(),b.stopAutoplay(),b.params.scrollbar&&b.scrollbar&&b.params.scrollbarDraggable&&b.scrollbar.disableDraggable(),b.params.loop&&b.destroyLoop(),a&&b.cleanupStyles(),b.disconnectObservers(),b.params.keyboardControl&&b.disableKeyboardControl&&b.disableKeyboardControl(),b.params.mousewheelControl&&b.disableMousewheelControl&&b.disableMousewheelControl(),b.params.a11y&&b.a11y&&b.a11y.destroy(),b.emit("onDestroy"),e!==!1&&(b=null)},b.init(),b}};t.prototype={isSafari:function(){var e=navigator.userAgent.toLowerCase();return e.indexOf("safari")>=0&&e.indexOf("chrome")<0&&e.indexOf("android")<0}(),isUiWebView:/(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent),isArray:function(e){return"[object Array]"===Object.prototype.toString.apply(e)},browser:{ie:window.navigator.pointerEnabled||window.navigator.msPointerEnabled,ieTouch:window.navigator.msPointerEnabled&&window.navigator.msMaxTouchPoints>1||window.navigator.pointerEnabled&&window.navigator.maxTouchPoints>1},device:function(){var e=navigator.userAgent,a=e.match(/(Android);?[\s\/]+([\d.]+)?/),t=e.match(/(iPad).*OS\s([\d_]+)/),r=e.match(/(iPod)(.*OS\s([\d_]+))?/),i=!t&&e.match(/(iPhone\sOS)\s([\d_]+)/);return{ios:t||i||r,android:a}}(),support:{touch:window.Modernizr&&Modernizr.touch===!0||function(){return!!("ontouchstart"in window||window.DocumentTouch&&document instanceof DocumentTouch)}(),transforms3d:window.Modernizr&&Modernizr.csstransforms3d===!0||function(){var e=document.createElement("div").style;return"webkitPerspective"in e||"MozPerspective"in e||"OPerspective"in e||"MsPerspective"in e||"perspective"in e}(),flexbox:function(){for(var e=document.createElement("div").style,a="alignItems webkitAlignItems webkitBoxAlign msFlexAlign mozBoxAlign webkitFlexDirection msFlexDirection mozBoxDirection mozBoxOrient webkitBoxDirection webkitBoxOrient".split(" "),t=0;t<a.length;t++)if(a[t]in e)return!0}(),observer:function(){return"MutationObserver"in window||"WebkitMutationObserver"in window}()},plugins:{}};for(var r=(function(){var e=function(e){var a=this,t=0;for(t=0;t<e.length;t++)a[t]=e[t];return a.length=e.length,this},a=function(a,t){var r=[],i=0;if(a&&!t&&a instanceof e)return a;if(a)if("string"==typeof a){var s,n,o=a.trim();if(o.indexOf("<")>=0&&o.indexOf(">")>=0){var l="div";for(0===o.indexOf("<li")&&(l="ul"),0===o.indexOf("<tr")&&(l="tbody"),(0===o.indexOf("<td")||0===o.indexOf("<th"))&&(l="tr"),0===o.indexOf("<tbody")&&(l="table"),0===o.indexOf("<option")&&(l="select"),n=document.createElement(l),n.innerHTML=a,i=0;i<n.childNodes.length;i++)r.push(n.childNodes[i])}else for(s=t||"#"!==a[0]||a.match(/[ .<>:~]/)?(t||document).querySelectorAll(a):[document.getElementById(a.split("#")[1])],i=0;i<s.length;i++)s[i]&&r.push(s[i])}else if(a.nodeType||a===window||a===document)r.push(a);else if(a.length>0&&a[0].nodeType)for(i=0;i<a.length;i++)r.push(a[i]);return new e(r)};return e.prototype={addClass:function(e){if("undefined"==typeof e)return this;for(var a=e.split(" "),t=0;t<a.length;t++)for(var r=0;r<this.length;r++)this[r].classList.add(a[t]);return this},removeClass:function(e){for(var a=e.split(" "),t=0;t<a.length;t++)for(var r=0;r<this.length;r++)this[r].classList.remove(a[t]);return this},hasClass:function(e){return this[0]?this[0].classList.contains(e):!1},toggleClass:function(e){for(var a=e.split(" "),t=0;t<a.length;t++)for(var r=0;r<this.length;r++)this[r].classList.toggle(a[t]);return this},attr:function(e,a){if(1===arguments.length&&"string"==typeof e)return this[0]?this[0].getAttribute(e):void 0;for(var t=0;t<this.length;t++)if(2===arguments.length)this[t].setAttribute(e,a);else for(var r in e)this[t][r]=e[r],this[t].setAttribute(r,e[r]);return this},removeAttr:function(e){for(var a=0;a<this.length;a++)this[a].removeAttribute(e);return this},data:function(e,a){if("undefined"!=typeof a){for(var t=0;t<this.length;t++){var r=this[t];r.dom7ElementDataStorage||(r.dom7ElementDataStorage={}),r.dom7ElementDataStorage[e]=a}return this}if(this[0]){var i=this[0].getAttribute("data-"+e);return i?i:this[0].dom7ElementDataStorage&&e in this[0].dom7ElementDataStorage?this[0].dom7ElementDataStorage[e]:void 0}},transform:function(e){for(var a=0;a<this.length;a++){var t=this[a].style;t.webkitTransform=t.MsTransform=t.msTransform=t.MozTransform=t.OTransform=t.transform=e}return this},transition:function(e){"string"!=typeof e&&(e+="ms");for(var a=0;a<this.length;a++){var t=this[a].style;t.webkitTransitionDuration=t.MsTransitionDuration=t.msTransitionDuration=t.MozTransitionDuration=t.OTransitionDuration=t.transitionDuration=e}return this},on:function(e,t,r,i){function s(e){var i=e.target;if(a(i).is(t))r.call(i,e);else for(var s=a(i).parents(),n=0;n<s.length;n++)a(s[n]).is(t)&&r.call(s[n],e)}var n,o,l=e.split(" ");for(n=0;n<this.length;n++)if("function"==typeof t||t===!1)for("function"==typeof t&&(r=arguments[1],i=arguments[2]||!1),o=0;o<l.length;o++)this[n].addEventListener(l[o],r,i);else for(o=0;o<l.length;o++)this[n].dom7LiveListeners||(this[n].dom7LiveListeners=[]),this[n].dom7LiveListeners.push({listener:r,liveListener:s}),this[n].addEventListener(l[o],s,i);return this},off:function(e,a,t,r){for(var i=e.split(" "),s=0;s<i.length;s++)for(var n=0;n<this.length;n++)if("function"==typeof a||a===!1)"function"==typeof a&&(t=arguments[1],r=arguments[2]||!1),this[n].removeEventListener(i[s],t,r);else if(this[n].dom7LiveListeners)for(var o=0;o<this[n].dom7LiveListeners.length;o++)this[n].dom7LiveListeners[o].listener===t&&this[n].removeEventListener(i[s],this[n].dom7LiveListeners[o].liveListener,r);return this},once:function(e,a,t,r){function i(n){t(n),s.off(e,a,i,r)}var s=this;"function"==typeof a&&(a=!1,t=arguments[1],r=arguments[2]),s.on(e,a,i,r)},trigger:function(e,a){for(var t=0;t<this.length;t++){var r;try{r=new window.CustomEvent(e,{detail:a,bubbles:!0,cancelable:!0})}catch(i){r=document.createEvent("Event"),r.initEvent(e,!0,!0),r.detail=a}this[t].dispatchEvent(r)}return this},transitionEnd:function(e){function a(s){if(s.target===this)for(e.call(this,s),t=0;t<r.length;t++)i.off(r[t],a)}var t,r=["webkitTransitionEnd","transitionend","oTransitionEnd","MSTransitionEnd","msTransitionEnd"],i=this;if(e)for(t=0;t<r.length;t++)i.on(r[t],a);return this},width:function(){return this[0]===window?window.innerWidth:this.length>0?parseFloat(this.css("width")):null},outerWidth:function(e){return this.length>0?e?this[0].offsetWidth+parseFloat(this.css("margin-right"))+parseFloat(this.css("margin-left")):this[0].offsetWidth:null},height:function(){return this[0]===window?window.innerHeight:this.length>0?parseFloat(this.css("height")):null},outerHeight:function(e){return this.length>0?e?this[0].offsetHeight+parseFloat(this.css("margin-top"))+parseFloat(this.css("margin-bottom")):this[0].offsetHeight:null},offset:function(){if(this.length>0){var e=this[0],a=e.getBoundingClientRect(),t=document.body,r=e.clientTop||t.clientTop||0,i=e.clientLeft||t.clientLeft||0,s=window.pageYOffset||e.scrollTop,n=window.pageXOffset||e.scrollLeft;return{top:a.top+s-r,left:a.left+n-i}}return null},css:function(e,a){var t;if(1===arguments.length){if("string"!=typeof e){for(t=0;t<this.length;t++)for(var r in e)this[t].style[r]=e[r];return this}if(this[0])return window.getComputedStyle(this[0],null).getPropertyValue(e)}if(2===arguments.length&&"string"==typeof e){for(t=0;t<this.length;t++)this[t].style[e]=a;return this}return this},each:function(e){for(var a=0;a<this.length;a++)e.call(this[a],a,this[a]);return this},html:function(e){if("undefined"==typeof e)return this[0]?this[0].innerHTML:void 0;for(var a=0;a<this.length;a++)this[a].innerHTML=e;return this},text:function(e){if("undefined"==typeof e)return this[0]?this[0].textContent.trim():null;for(var a=0;a<this.length;a++)this[a].textContent=e;return this},is:function(t){if(!this[0])return!1;var r,i;if("string"==typeof t){var s=this[0];if(s===document)return t===document;if(s===window)return t===window;if(s.matches)return s.matches(t);if(s.webkitMatchesSelector)return s.webkitMatchesSelector(t);if(s.mozMatchesSelector)return s.mozMatchesSelector(t);if(s.msMatchesSelector)return s.msMatchesSelector(t);for(r=a(t),i=0;i<r.length;i++)if(r[i]===this[0])return!0;return!1}if(t===document)return this[0]===document;if(t===window)return this[0]===window;if(t.nodeType||t instanceof e){for(r=t.nodeType?[t]:t,i=0;i<r.length;i++)if(r[i]===this[0])return!0;return!1}return!1},index:function(){if(this[0]){for(var e=this[0],a=0;null!==(e=e.previousSibling);)1===e.nodeType&&a++;return a}},eq:function(a){if("undefined"==typeof a)return this;var t,r=this.length;return a>r-1?new e([]):0>a?(t=r+a,new e(0>t?[]:[this[t]])):new e([this[a]])},append:function(a){var t,r;for(t=0;t<this.length;t++)if("string"==typeof a){var i=document.createElement("div");for(i.innerHTML=a;i.firstChild;)this[t].appendChild(i.firstChild)}else if(a instanceof e)for(r=0;r<a.length;r++)this[t].appendChild(a[r]);else this[t].appendChild(a);return this},prepend:function(a){var t,r;for(t=0;t<this.length;t++)if("string"==typeof a){var i=document.createElement("div");for(i.innerHTML=a,r=i.childNodes.length-1;r>=0;r--)this[t].insertBefore(i.childNodes[r],this[t].childNodes[0])}else if(a instanceof e)for(r=0;r<a.length;r++)this[t].insertBefore(a[r],this[t].childNodes[0]);else this[t].insertBefore(a,this[t].childNodes[0]);return this},insertBefore:function(e){for(var t=a(e),r=0;r<this.length;r++)if(1===t.length)t[0].parentNode.insertBefore(this[r],t[0]);else if(t.length>1)for(var i=0;i<t.length;i++)t[i].parentNode.insertBefore(this[r].cloneNode(!0),t[i])},insertAfter:function(e){for(var t=a(e),r=0;r<this.length;r++)if(1===t.length)t[0].parentNode.insertBefore(this[r],t[0].nextSibling);else if(t.length>1)for(var i=0;i<t.length;i++)t[i].parentNode.insertBefore(this[r].cloneNode(!0),t[i].nextSibling)},next:function(t){return new e(this.length>0?t?this[0].nextElementSibling&&a(this[0].nextElementSibling).is(t)?[this[0].nextElementSibling]:[]:this[0].nextElementSibling?[this[0].nextElementSibling]:[]:[])},nextAll:function(t){var r=[],i=this[0];if(!i)return new e([]);for(;i.nextElementSibling;){var s=i.nextElementSibling;t?a(s).is(t)&&r.push(s):r.push(s),i=s}return new e(r)},prev:function(t){return new e(this.length>0?t?this[0].previousElementSibling&&a(this[0].previousElementSibling).is(t)?[this[0].previousElementSibling]:[]:this[0].previousElementSibling?[this[0].previousElementSibling]:[]:[])},prevAll:function(t){var r=[],i=this[0];if(!i)return new e([]);for(;i.previousElementSibling;){var s=i.previousElementSibling;t?a(s).is(t)&&r.push(s):r.push(s),i=s}return new e(r)},parent:function(e){for(var t=[],r=0;r<this.length;r++)e?a(this[r].parentNode).is(e)&&t.push(this[r].parentNode):t.push(this[r].parentNode);return a(a.unique(t))},parents:function(e){for(var t=[],r=0;r<this.length;r++)for(var i=this[r].parentNode;i;)e?a(i).is(e)&&t.push(i):t.push(i),i=i.parentNode;return a(a.unique(t))},find:function(a){for(var t=[],r=0;r<this.length;r++)for(var i=this[r].querySelectorAll(a),s=0;s<i.length;s++)t.push(i[s]);return new e(t)},children:function(t){for(var r=[],i=0;i<this.length;i++)for(var s=this[i].childNodes,n=0;n<s.length;n++)t?1===s[n].nodeType&&a(s[n]).is(t)&&r.push(s[n]):1===s[n].nodeType&&r.push(s[n]);return new e(a.unique(r))},remove:function(){for(var e=0;e<this.length;e++)this[e].parentNode&&this[e].parentNode.removeChild(this[e]);return this},add:function(){var e,t,r=this;for(e=0;e<arguments.length;e++){var i=a(arguments[e]);for(t=0;t<i.length;t++)r[r.length]=i[t],r.length++}return r}},a.fn=e.prototype,a.unique=function(e){for(var a=[],t=0;t<e.length;t++)-1===a.indexOf(e[t])&&a.push(e[t]);return a},a}()),i=["jQuery","Zepto","Dom7"],s=0;s<i.length;s++)window[i[s]]&&e(window[i[s]]);var n;n="undefined"==typeof r?window.Dom7||window.Zepto||window.jQuery:r,n&&("transitionEnd"in n.fn||(n.fn.transitionEnd=function(e){function a(s){if(s.target===this)for(e.call(this,s),t=0;t<r.length;t++)i.off(r[t],a)}var t,r=["webkitTransitionEnd","transitionend","oTransitionEnd","MSTransitionEnd","msTransitionEnd"],i=this;if(e)for(t=0;t<r.length;t++)i.on(r[t],a);return this}),"transform"in n.fn||(n.fn.transform=function(e){for(var a=0;a<this.length;a++){var t=this[a].style;t.webkitTransform=t.MsTransform=t.msTransform=t.MozTransform=t.OTransform=t.transform=e}return this}),"transition"in n.fn||(n.fn.transition=function(e){"string"!=typeof e&&(e+="ms");for(var a=0;a<this.length;a++){var t=this[a].style;t.webkitTransitionDuration=t.MsTransitionDuration=t.msTransitionDuration=t.MozTransitionDuration=t.OTransitionDuration=t.transitionDuration=e}return this})),window.Swiper=t}(),"undefined"!=typeof module?module.exports=window.Swiper:"function"==typeof define&&define.amd&&define([],function(){"use strict";return window.Swiper});
 //# sourceMappingURL=maps/swiper.min.js.map
 
+
+
+
+//REMODAL
+!(function(root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], function($) {
+            return factory(root, $);
+        });
+    } else if (typeof exports === 'object') {
+        factory(root, require('jquery'));
+    } else {
+        factory(root, root.jQuery || root.Zepto);
+    }
+})(this, function(global, $) {
+
+    'use strict';
+
+    /**
+     * Name of the plugin
+     * @private
+     * @const
+     * @type {String}
+     */
+    var PLUGIN_NAME = 'remodal';
+
+    /**
+     * Namespace for CSS and events
+     * @private
+     * @const
+     * @type {String}
+     */
+    var NAMESPACE = global.REMODAL_GLOBALS && global.REMODAL_GLOBALS.NAMESPACE || PLUGIN_NAME;
+
+    /**
+     * Animationstart event with vendor prefixes
+     * @private
+     * @const
+     * @type {String}
+     */
+    var ANIMATIONSTART_EVENTS = $.map(
+        ['animationstart', 'webkitAnimationStart', 'MSAnimationStart', 'oAnimationStart'],
+
+        function(eventName) {
+            return eventName + '.' + NAMESPACE;
+        }
+
+    ).join(' ');
+
+    /**
+     * Animationend event with vendor prefixes
+     * @private
+     * @const
+     * @type {String}
+     */
+    var ANIMATIONEND_EVENTS = $.map(
+        ['animationend', 'webkitAnimationEnd', 'MSAnimationEnd', 'oAnimationEnd'],
+
+        function(eventName) {
+            return eventName + '.' + NAMESPACE;
+        }
+
+    ).join(' ');
+
+    /**
+     * Default settings
+     * @private
+     * @const
+     * @type {Object}
+     */
+    var DEFAULTS = $.extend({
+        hashTracking: true,
+        closeOnConfirm: true,
+        closeOnCancel: true,
+        closeOnEscape: true,
+        closeOnOutsideClick: true,
+        modifier: '',
+        appendTo: null
+    }, global.REMODAL_GLOBALS && global.REMODAL_GLOBALS.DEFAULTS);
+
+    /**
+     * States of the Remodal
+     * @private
+     * @const
+     * @enum {String}
+     */
+    var STATES = {
+        CLOSING: 'closing',
+        CLOSED: 'closed',
+        OPENING: 'opening',
+        OPENED: 'opened'
+    };
+
+    /**
+     * Reasons of the state change.
+     * @private
+     * @const
+     * @enum {String}
+     */
+    var STATE_CHANGE_REASONS = {
+        CONFIRMATION: 'confirmation',
+        CANCELLATION: 'cancellation'
+    };
+
+    /**
+     * Is animation supported?
+     * @private
+     * @const
+     * @type {Boolean}
+     */
+    var IS_ANIMATION = (function() {
+        var style = document.createElement('div').style;
+
+        return style.animationName !== undefined ||
+            style.WebkitAnimationName !== undefined ||
+            style.MozAnimationName !== undefined ||
+            style.msAnimationName !== undefined ||
+            style.OAnimationName !== undefined;
+    })();
+
+    /**
+     * Is iOS?
+     * @private
+     * @const
+     * @type {Boolean}
+     */
+    var IS_IOS = /iPad|iPhone|iPod/.test(navigator.platform);
+
+    /**
+     * Current modal
+     * @private
+     * @type {Remodal}
+     */
+    var current;
+
+    /**
+     * Scrollbar position
+     * @private
+     * @type {Number}
+     */
+    var scrollTop;
+
+    /**
+     * Returns an animation duration
+     * @private
+     * @param {jQuery} $elem
+     * @returns {Number}
+     */
+    function getAnimationDuration($elem) {
+        if (
+            IS_ANIMATION &&
+            $elem.css('animation-name') === 'none' &&
+            $elem.css('-webkit-animation-name') === 'none' &&
+            $elem.css('-moz-animation-name') === 'none' &&
+            $elem.css('-o-animation-name') === 'none' &&
+            $elem.css('-ms-animation-name') === 'none'
+        ) {
+            return 0;
+        }
+
+        var duration = $elem.css('animation-duration') ||
+            $elem.css('-webkit-animation-duration') ||
+            $elem.css('-moz-animation-duration') ||
+            $elem.css('-o-animation-duration') ||
+            $elem.css('-ms-animation-duration') ||
+            '0s';
+
+        var delay = $elem.css('animation-delay') ||
+            $elem.css('-webkit-animation-delay') ||
+            $elem.css('-moz-animation-delay') ||
+            $elem.css('-o-animation-delay') ||
+            $elem.css('-ms-animation-delay') ||
+            '0s';
+
+        var iterationCount = $elem.css('animation-iteration-count') ||
+            $elem.css('-webkit-animation-iteration-count') ||
+            $elem.css('-moz-animation-iteration-count') ||
+            $elem.css('-o-animation-iteration-count') ||
+            $elem.css('-ms-animation-iteration-count') ||
+            '1';
+
+        var max;
+        var len;
+        var num;
+        var i;
+
+        duration = duration.split(', ');
+        delay = delay.split(', ');
+        iterationCount = iterationCount.split(', ');
+
+        // The 'duration' size is the same as the 'delay' size
+        for (i = 0, len = duration.length, max = Number.NEGATIVE_INFINITY; i < len; i++) {
+            num = parseFloat(duration[i]) * parseInt(iterationCount[i], 10) + parseFloat(delay[i]);
+
+            if (num > max) {
+                max = num;
+            }
+        }
+
+        return max;
+    }
+
+    /**
+     * Returns a scrollbar width
+     * @private
+     * @returns {Number}
+     */
+    function getScrollbarWidth() {
+        if ($(document).height() <= $(window).height()) {
+            return 0;
+        }
+
+        var outer = document.createElement('div');
+        var inner = document.createElement('div');
+        var widthNoScroll;
+        var widthWithScroll;
+
+        outer.style.visibility = 'hidden';
+        outer.style.width = '100px';
+        document.body.appendChild(outer);
+
+        widthNoScroll = outer.offsetWidth;
+
+        // Force scrollbars
+        outer.style.overflow = 'scroll';
+
+        // Add inner div
+        inner.style.width = '100%';
+        outer.appendChild(inner);
+
+        widthWithScroll = inner.offsetWidth;
+
+        // Remove divs
+        outer.parentNode.removeChild(outer);
+
+        return widthNoScroll - widthWithScroll;
+    }
+
+    /**
+     * Locks the screen
+     * @private
+     */
+    function lockScreen() {
+        if (IS_IOS) {
+            return;
+        }
+
+        var $html = $('html');
+        var lockedClass = namespacify('is-locked');
+        var paddingRight;
+        var $body;
+
+        if (!$html.hasClass(lockedClass)) {
+            $body = $(document.body);
+
+            // Zepto does not support '-=', '+=' in the `css` method
+            paddingRight = parseInt($body.css('padding-right'), 10) + getScrollbarWidth();
+
+            $body.css('padding-right', paddingRight + 'px');
+            $html.addClass(lockedClass);
+        }
+    }
+
+    /**
+     * Unlocks the screen
+     * @private
+     */
+    function unlockScreen() {
+        if (IS_IOS) {
+            return;
+        }
+
+        var $html = $('html');
+        var lockedClass = namespacify('is-locked');
+        var paddingRight;
+        var $body;
+
+        if ($html.hasClass(lockedClass)) {
+            $body = $(document.body);
+
+            // Zepto does not support '-=', '+=' in the `css` method
+            paddingRight = parseInt($body.css('padding-right'), 10) - getScrollbarWidth();
+
+            $body.css('padding-right', paddingRight + 'px');
+            $html.removeClass(lockedClass);
+        }
+    }
+
+    /**
+     * Sets a state for an instance
+     * @private
+     * @param {Remodal} instance
+     * @param {STATES} state
+     * @param {Boolean} isSilent If true, Remodal does not trigger events
+     * @param {String} Reason of a state change.
+     */
+    function setState(instance, state, isSilent, reason) {
+
+        var newState = namespacify('is', state);
+        var allStates = [namespacify('is', STATES.CLOSING),
+            namespacify('is', STATES.OPENING),
+            namespacify('is', STATES.CLOSED),
+            namespacify('is', STATES.OPENED)].join(' ');
+
+        instance.$bg
+            .removeClass(allStates)
+            .addClass(newState);
+
+        instance.$overlay
+            .removeClass(allStates)
+            .addClass(newState);
+
+        instance.$wrapper
+            .removeClass(allStates)
+            .addClass(newState);
+
+        instance.$modal
+            .removeClass(allStates)
+            .addClass(newState);
+
+        instance.state = state;
+        !isSilent && instance.$modal.trigger({
+            type: state,
+            reason: reason
+        }, [{ reason: reason }]);
+    }
+
+    /**
+     * Synchronizes with the animation
+     * @param {Function} doBeforeAnimation
+     * @param {Function} doAfterAnimation
+     * @param {Remodal} instance
+     */
+    function syncWithAnimation(doBeforeAnimation, doAfterAnimation, instance) {
+        var runningAnimationsCount = 0;
+
+        var handleAnimationStart = function(e) {
+            if (e.target !== this) {
+                return;
+            }
+
+            runningAnimationsCount++;
+        };
+
+        var handleAnimationEnd = function(e) {
+            if (e.target !== this) {
+                return;
+            }
+
+            if (--runningAnimationsCount === 0) {
+
+                // Remove event listeners
+                $.each(['$bg', '$overlay', '$wrapper', '$modal'], function(index, elemName) {
+                    instance[elemName].off(ANIMATIONSTART_EVENTS + ' ' + ANIMATIONEND_EVENTS);
+                });
+
+                doAfterAnimation();
+            }
+        };
+
+        $.each(['$bg', '$overlay', '$wrapper', '$modal'], function(index, elemName) {
+            instance[elemName]
+                .on(ANIMATIONSTART_EVENTS, handleAnimationStart)
+                .on(ANIMATIONEND_EVENTS, handleAnimationEnd);
+        });
+
+        doBeforeAnimation();
+
+        // If the animation is not supported by a browser or its duration is 0
+        if (
+            getAnimationDuration(instance.$bg) === 0 &&
+            getAnimationDuration(instance.$overlay) === 0 &&
+            getAnimationDuration(instance.$wrapper) === 0 &&
+            getAnimationDuration(instance.$modal) === 0
+        ) {
+
+            // Remove event listeners
+            $.each(['$bg', '$overlay', '$wrapper', '$modal'], function(index, elemName) {
+                instance[elemName].off(ANIMATIONSTART_EVENTS + ' ' + ANIMATIONEND_EVENTS);
+            });
+
+            doAfterAnimation();
+        }
+    }
+
+    /**
+     * Closes immediately
+     * @private
+     * @param {Remodal} instance
+     */
+    function halt(instance) {
+        if (instance.state === STATES.CLOSED) {
+            return;
+        }
+
+        $.each(['$bg', '$overlay', '$wrapper', '$modal'], function(index, elemName) {
+            instance[elemName].off(ANIMATIONSTART_EVENTS + ' ' + ANIMATIONEND_EVENTS);
+        });
+
+        instance.$bg.removeClass(instance.settings.modifier);
+        instance.$overlay.removeClass(instance.settings.modifier).hide();
+        instance.$wrapper.hide();
+        unlockScreen();
+        setState(instance, STATES.CLOSED, true);
+    }
+
+    /**
+     * Parses a string with options
+     * @private
+     * @param str
+     * @returns {Object}
+     */
+    function parseOptions(str) {
+        var obj = {};
+        var arr;
+        var len;
+        var val;
+        var i;
+
+        // Remove spaces before and after delimiters
+        str = str.replace(/\s*:\s*/g, ':').replace(/\s*,\s*/g, ',');
+
+        // Parse a string
+        arr = str.split(',');
+        for (i = 0, len = arr.length; i < len; i++) {
+            arr[i] = arr[i].split(':');
+            val = arr[i][1];
+
+            // Convert a string value if it is like a boolean
+            if (typeof val === 'string' || val instanceof String) {
+                val = val === 'true' || (val === 'false' ? false : val);
+            }
+
+            // Convert a string value if it is like a number
+            if (typeof val === 'string' || val instanceof String) {
+                val = !isNaN(val) ? +val : val;
+            }
+
+            obj[arr[i][0]] = val;
+        }
+
+        return obj;
+    }
+
+    /**
+     * Generates a string separated by dashes and prefixed with NAMESPACE
+     * @private
+     * @param {...String}
+     * @returns {String}
+     */
+    function namespacify() {
+        var result = NAMESPACE;
+
+        for (var i = 0; i < arguments.length; ++i) {
+            result += '-' + arguments[i];
+        }
+
+        return result;
+    }
+
+    /**
+     * Handles the hashchange event
+     * @private
+     * @listens hashchange
+     */
+    function handleHashChangeEvent() {
+        var id = location.hash.replace('#', '');
+        var instance;
+        var $elem;
+
+        if (!id) {
+
+            // Check if we have currently opened modal and animation was completed
+            if (current && current.state === STATES.OPENED && current.settings.hashTracking) {
+                current.close();
+            }
+        } else {
+
+            // Catch syntax error if your hash is bad
+            try {
+                $elem = $(
+                    '[data-' + PLUGIN_NAME + '-id="' + id + '"]'
+                );
+            } catch (err) {}
+
+            if ($elem && $elem.length) {
+                instance = $[PLUGIN_NAME].lookup[$elem.data(PLUGIN_NAME)];
+
+                if (instance && instance.settings.hashTracking) {
+                    instance.open();
+                }
+            }
+
+        }
+    }
+
+    /**
+     * Remodal constructor
+     * @constructor
+     * @param {jQuery} $modal
+     * @param {Object} options
+     */
+    function Remodal($modal, options) {
+        var $body = $(document.body);
+        var $appendTo = $body;
+        var remodal = this;
+
+        remodal.settings = $.extend({}, DEFAULTS, options);
+        remodal.index = $[PLUGIN_NAME].lookup.push(remodal) - 1;
+        remodal.state = STATES.CLOSED;
+
+        remodal.$overlay = $('.' + namespacify('overlay'));
+
+        if (remodal.settings.appendTo !== null && remodal.settings.appendTo.length) {
+            $appendTo = $(remodal.settings.appendTo);
+        }
+
+        if (!remodal.$overlay.length) {
+            remodal.$overlay = $('<div>').addClass(namespacify('overlay') + ' ' + namespacify('is', STATES.CLOSED)).hide();
+            $appendTo.append(remodal.$overlay);
+        }
+
+        remodal.$bg = $('.' + namespacify('bg')).addClass(namespacify('is', STATES.CLOSED));
+
+        remodal.$modal = $modal
+            .addClass(
+                NAMESPACE + ' ' +
+                namespacify('is-initialized') + ' ' +
+                remodal.settings.modifier + ' ' +
+                namespacify('is', STATES.CLOSED))
+            .attr('tabindex', '-1');
+
+        remodal.$wrapper = $('<div>')
+            .addClass(
+                namespacify('wrapper') + ' ' +
+                remodal.settings.modifier + ' ' +
+                namespacify('is', STATES.CLOSED))
+            .hide()
+            .append(remodal.$modal);
+        $appendTo.append(remodal.$wrapper);
+
+        // Add the event listener for the close button
+        remodal.$wrapper.on('click.' + NAMESPACE, '[data-' + PLUGIN_NAME + '-action="close"]', function(e) {
+            e.preventDefault();
+
+            remodal.close();
+        });
+
+        // Add the event listener for the cancel button
+        remodal.$wrapper.on('click.' + NAMESPACE, '[data-' + PLUGIN_NAME + '-action="cancel"]', function(e) {
+            e.preventDefault();
+
+            remodal.$modal.trigger(STATE_CHANGE_REASONS.CANCELLATION);
+
+            if (remodal.settings.closeOnCancel) {
+                remodal.close(STATE_CHANGE_REASONS.CANCELLATION);
+            }
+        });
+
+        // Add the event listener for the confirm button
+        remodal.$wrapper.on('click.' + NAMESPACE, '[data-' + PLUGIN_NAME + '-action="confirm"]', function(e) {
+            e.preventDefault();
+
+            remodal.$modal.trigger(STATE_CHANGE_REASONS.CONFIRMATION);
+
+            if (remodal.settings.closeOnConfirm) {
+                remodal.close(STATE_CHANGE_REASONS.CONFIRMATION);
+            }
+        });
+
+        // Add the event listener for the overlay
+        remodal.$wrapper.on('click.' + NAMESPACE, function(e) {
+            var $target = $(e.target);
+
+            if (!$target.hasClass(namespacify('wrapper'))) {
+                return;
+            }
+
+            if (remodal.settings.closeOnOutsideClick) {
+                remodal.close();
+            }
+        });
+    }
+
+    /**
+     * Opens a modal window
+     * @public
+     */
+    Remodal.prototype.open = function() {
+        var remodal = this;
+        var id;
+
+        // Check if the animation was completed
+        if (remodal.state === STATES.OPENING || remodal.state === STATES.CLOSING) {
+            return;
+        }
+
+        id = remodal.$modal.attr('data-' + PLUGIN_NAME + '-id');
+
+        if (id && remodal.settings.hashTracking) {
+            scrollTop = $(window).scrollTop();
+            location.hash = id;
+        }
+
+        if (current && current !== remodal) {
+            halt(current);
+        }
+
+        current = remodal;
+        lockScreen();
+        remodal.$bg.addClass(remodal.settings.modifier);
+        remodal.$overlay.addClass(remodal.settings.modifier).show();
+        remodal.$wrapper.show().scrollTop(0);
+        remodal.$modal.focus();
+
+        syncWithAnimation(
+            function() {
+                setState(remodal, STATES.OPENING);
+            },
+
+            function() {
+                setState(remodal, STATES.OPENED);
+            },
+
+            remodal);
+    };
+
+    /**
+     * Closes a modal window
+     * @public
+     * @param {String} reason
+     */
+    Remodal.prototype.close = function(reason) {
+        var remodal = this;
+
+        // Check if the animation was completed
+        if (remodal.state === STATES.OPENING || remodal.state === STATES.CLOSING || remodal.state === STATES.CLOSED) {
+            return;
+        }
+
+        if (
+            remodal.settings.hashTracking &&
+            remodal.$modal.attr('data-' + PLUGIN_NAME + '-id') === location.hash.substr(1)
+        ) {
+            location.hash = '';
+            $(window).scrollTop(scrollTop);
+        }
+
+        syncWithAnimation(
+            function() {
+                setState(remodal, STATES.CLOSING, false, reason);
+            },
+
+            function() {
+                remodal.$bg.removeClass(remodal.settings.modifier);
+                remodal.$overlay.removeClass(remodal.settings.modifier).hide();
+                remodal.$wrapper.hide();
+                unlockScreen();
+
+                setState(remodal, STATES.CLOSED, false, reason);
+            },
+
+            remodal);
+    };
+
+    /**
+     * Returns a current state of a modal
+     * @public
+     * @returns {STATES}
+     */
+    Remodal.prototype.getState = function() {
+        return this.state;
+    };
+
+    /**
+     * Destroys a modal
+     * @public
+     */
+    Remodal.prototype.destroy = function() {
+        var lookup = $[PLUGIN_NAME].lookup;
+        var instanceCount;
+
+        halt(this);
+        this.$wrapper.remove();
+
+        delete lookup[this.index];
+        instanceCount = $.grep(lookup, function(instance) {
+            return !!instance;
+        }).length;
+
+        if (instanceCount === 0) {
+            this.$overlay.remove();
+            this.$bg.removeClass(
+                namespacify('is', STATES.CLOSING) + ' ' +
+                namespacify('is', STATES.OPENING) + ' ' +
+                namespacify('is', STATES.CLOSED) + ' ' +
+                namespacify('is', STATES.OPENED));
+        }
+    };
+
+    /**
+     * Special plugin object for instances
+     * @public
+     * @type {Object}
+     */
+    $[PLUGIN_NAME] = {
+        lookup: []
+    };
+
+    /**
+     * Plugin constructor
+     * @constructor
+     * @param {Object} options
+     * @returns {JQuery}
+     */
+    $.fn[PLUGIN_NAME] = function(opts) {
+        var instance;
+        var $elem;
+
+        this.each(function(index, elem) {
+            $elem = $(elem);
+
+            if ($elem.data(PLUGIN_NAME) == null) {
+                instance = new Remodal($elem, opts);
+                $elem.data(PLUGIN_NAME, instance.index);
+
+                if (
+                    instance.settings.hashTracking &&
+                    $elem.attr('data-' + PLUGIN_NAME + '-id') === location.hash.substr(1)
+                ) {
+                    instance.open();
+                }
+            } else {
+                instance = $[PLUGIN_NAME].lookup[$elem.data(PLUGIN_NAME)];
+            }
+        });
+
+        return instance;
+    };
+
+    $(document).ready(function() {
+
+        // data-remodal-target opens a modal window with the special Id
+        $(document).on('click', '[data-' + PLUGIN_NAME + '-target]', function(e) {
+            e.preventDefault();
+
+            var elem = e.currentTarget;
+            var id = elem.getAttribute('data-' + PLUGIN_NAME + '-target');
+            var $target = $('[data-' + PLUGIN_NAME + '-id="' + id + '"]');
+
+            $[PLUGIN_NAME].lookup[$target.data(PLUGIN_NAME)].open();
+        });
+
+        // Auto initialization of modal windows
+        // They should have the 'remodal' class attribute
+        // Also you can write the `data-remodal-options` attribute to pass params into the modal
+        $(document).find('.' + NAMESPACE).each(function(i, container) {
+            var $container = $(container);
+            var options = $container.data(PLUGIN_NAME + '-options');
+
+            if (!options) {
+                options = {};
+            } else if (typeof options === 'string' || options instanceof String) {
+                options = parseOptions(options);
+            }
+
+            $container[PLUGIN_NAME](options);
+        });
+
+        // Handles the keydown event
+        $(document).on('keydown.' + NAMESPACE, function(e) {
+            if (current && current.settings.closeOnEscape && current.state === STATES.OPENED && e.keyCode === 27) {
+                current.close();
+            }
+        });
+
+        // Handles the hashchange event
+        $(window).on('hashchange.' + NAMESPACE, handleHashChangeEvent);
+    });
+});
+
+
+
 //FONTS
 
 !function () {
