@@ -8,9 +8,7 @@ $font-base: 14px;
 $f: "open";
 $icons: "icons";
 
-@import 'components/fonts';
 @import 'components/flexbox';
 @import 'components/reset';
 @import 'components/code';
-@import 'components/outer';
 @import 'components/rwd';
