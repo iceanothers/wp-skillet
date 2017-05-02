@@ -7,12 +7,7 @@ body, html {
     width: 100%;
 }
 body {
-    background: url(//farm6.staticflickr.com/5541/10785702065_591a36db1a_o_d.jpg) no-repeat 50% 50%;
-    -webkit-background-size: cover;
-    -khtml-background-size: cover;
-    -moz-background-size: cover;
-    -ms-background-size: cover;
-    background-size: cover;
+    background: url(01.jpg) 50% 50% / cover no-repeat;
 }
 .login form {
     color: #fff;
