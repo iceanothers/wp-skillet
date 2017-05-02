@@ -294,6 +294,7 @@ $button-color: #fff;
     font-size: 24px;
     text-transform: uppercase;
     line-height: 50px;
+    padding-bottom: 0;
   }
   span {
     @include center(false, true);
