@@ -6,6 +6,15 @@ $(document).ready(function () {
         $(this).toggleClass("opened");
     });
 
+    if (width <= 1024) {
+        $("#mainMenu .menu-item-has-children > a").append("<span></span>");
+        $("#mainMenu .menu-item-has-children span").click(function() {
+            $(this).parent().next().slideToggle(300);
+            $(this).toggleClass("active");
+            return false;
+        });
+    }
+
     /*var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,

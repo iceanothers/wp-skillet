@@ -6,6 +6,7 @@
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                 <?php the_content(); ?>
             <?php endwhile; endif; ?>
+            <a class="button" href="<?php echo get_permalink(BLOG_ID); ?>">Go back</a>
         </article>
         <aside>
 
