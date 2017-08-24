@@ -24,17 +24,17 @@ header {
 
 @media screen and (min-width: 1025px) {
   #mainMenu {
-    ul {
+    > ul {
       font-size: 0;
-      li {
+      > li {
         display: inline-block;
         vertical-align: top;
         position: relative;
-        a {
+        > a {
           font-size: 14px;
           display: block;
         }
-        &:hover a, &.current-menu-item a {
+        &:hover > a, &.current-menu-item > a {
 
         }
         &:hover > ul {
