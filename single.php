@@ -9,7 +9,7 @@
             <a class="button" href="<?php echo get_permalink(BLOG_ID); ?>">Go back</a>
         </article>
         <aside>
-
+            <?php dynamic_sidebar("Blog Sidebar") ?>
         </aside>
     </div>
 </section>

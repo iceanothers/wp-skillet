@@ -3,11 +3,12 @@
     <div class="container">
         <article>
             <h1><?php echo get_the_title(BLOG_ID); ?></h1>
+            <h3>All posts by "<?php echo $s; ?>"</h3>
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                 <div class="post">
                     <?php if (has_post_thumbnail()) { ?>
                         <a class="thumb" href="<?php the_permalink(); ?>">
-                            <?php the_post_thumbnail(); ?>
+                            <?php the_post_thumbnail("thumbnail"); ?>
                         </a>
                     <?php } ?>
                     <div class="info">

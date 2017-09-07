@@ -22,6 +22,10 @@ function wp_IEhtml5_js () {
 }
 add_action('wp_head', 'wp_IEhtml5_js');
 
+function my_acf_init() {
+    acf_update_setting('google_api_key', 'AIzaSyAOfuigGs3rWzZsdcWmQTeGU82RGccVqfc');
+}
+
 // Custom theme url
 function theme($filepath = NULL){
     return preg_replace( '(https?://)', '//', get_stylesheet_directory_uri() . ($filepath?'/' . $filepath:'') );
@@ -306,3 +310,11 @@ function some() {
     return $soc;
 }
 add_shortcode("social", "some");
+
+/*add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+// Remove the sorting dropdown from Woocommerce
+remove_action( 'woocommerce_before_shop_loop' , 'woocommerce_catalog_ordering', 30 );
+// Remove the result count from WooCommerce
+remove_action( 'woocommerce_before_shop_loop' , 'woocommerce_result_count', 20 );
+add_theme_support( 'wc-product-gallery-lightbox' );
+add_theme_support( 'wc-product-gallery-slider' );*/

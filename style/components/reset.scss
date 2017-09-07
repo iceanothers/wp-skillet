@@ -22,6 +22,9 @@ a, a:hover, input, textarea, select {
 ol {
   list-style: decimal inside;
   margin-bottom: 20px;
+  li {
+    padding: 5px 0 5px 15px;
+  }
 }
 
 ul {
@@ -92,22 +95,20 @@ article, aside, details, figcaption, figure, footer, header, nav, section, summa
 
 .alignleft {
   float: left;
+  margin: 0 30px 10px 0;
 }
 
 .alignright {
   float: right;
-}
-
-img.alignleft {
-  margin: 0 30px 10px 0;
-}
-
-img.alignright {
   margin: 0 0 10px 30px;
 }
 
 .aligncenter {
   margin: 0 auto 20px;
+}
+
+.alignnone {
+  margin: 0 0 20px;
 }
 
 img {
@@ -357,13 +358,34 @@ body {
   @include justify-content(space-between);
 }
 
+.start {
+  @include flexbox;
+  @include justify-content(flex-start);
+}
+
+.end {
+  @include flexbox;
+  @include justify-content(flex-end);
+}
+
+.around {
+  @include flexbox;
+  @include justify-content(space-around);
+}
+
 .alc {
   @include flexbox;
   @include justify-content(space-between);
   @include align-items(center);
 }
 
-.end {
+.alstart {
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(flex-start);
+}
+
+.alend {
   @include flexbox;
   @include justify-content(space-between);
   @include align-items(flex-end);

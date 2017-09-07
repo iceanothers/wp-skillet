@@ -1,5 +1,8 @@
 //Responsive Web Design
 @media screen and (max-width: 1024px) {
+  html {
+    font-size: 14px;
+  }
   #menuOpen {
     display: block;
     &.opened {
@@ -125,6 +128,14 @@
         }
       }
     }
+  }
+  .alignleft, .aligncenter, .alignright {
+    float: none;
+    margin: 0 auto 20px;
+  }
+
+  .alignnone {
+    margin: 0 0 20px;
   }
 }
 
