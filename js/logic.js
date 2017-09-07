@@ -39,17 +39,23 @@ $(document).ready(function () {
 
     //WOOOOOOOO
 
-    /*$("form .quantity").prepend('<div class="minus qControls i-minus"></div>');
-    $("form .quantity").append('<div class="plus qControls i-plus"></div>');
-    $('.minus').on('click', function (e) {
+    /*initQuantityInput();
+    $('body').on('click','.minus', function (e) {
         var val = parseInt($(this).next('input').val());
         if (val !== 0) {
             $(this).next('input').val(val - 1).change();
         }
     });
-    $('.plus').on('click', function (e) {
+    $('body').on('click','.plus', function (e) {
         var val = parseInt($(this).prev('input').val());
         $(this).prev('input').val(val + 1).change();
 
-    });*/
+    });
+    $( document.body ).on('updated_cart_totals', function(){
+        initQuantityInput();
+    });
+    function initQuantityInput() {
+        $("form .quantity").prepend('<div class="minus qControls i-minus"></div>');
+        $("form .quantity").append('<div class="plus qControls i-plus"></div>');
+    }*/
 });
