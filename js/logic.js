@@ -23,8 +23,6 @@ $(document).ready(function () {
         spaceBetween: 30
     });*/
 
-    $("select").selbel();
-
     //WPCF7
     $(this).on('click', '.wpcf7-not-valid-tip', function () {
         $(this).prev().trigger('focus');
@@ -36,6 +34,10 @@ $(document).ready(function () {
     $(window).bind("resize", function () {
 
     });
+
+    if (!$(".woocommerce-checkout")[0]) {
+        $("select").selbel();
+    }
 
     //WOOOOOOOO
 
