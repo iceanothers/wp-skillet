@@ -113,6 +113,11 @@ add_filter( 'script_loader_src', 'vc_remove_wp_ver_css_js', 9999 );
 /* BEGIN: Theme config section*/
 define ('HOME_PAGE_ID', get_option('page_on_front'));
 define ('BLOG_ID', get_option('page_for_posts'));
+define ('POSTS_PER_PAGE', get_option('posts_per_page'));
+/*define ('SHOP_ID', get_option('woocommerce_shop_page_id'));
+define ('ACCOUNT_ID', get_option('woocommerce_myaccount_page_id'));
+define ('CART_ID', get_option('woocommerce_cart_page_id'));
+define ('CHECKOUT_ID', get_option('woocommerce_checkout_page_id'));*/
 /* END: Theme config section*/
 
 //New Body Classes
