@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     if (width <= 1024) {
         $("#mainMenu .menu-item-has-children > a").append("<span></span>");
-        $("#mainMenu .menu-item-has-children span").click(function() {
+        $("#mainMenu .menu-item-has-children span").click(function () {
             $(this).parent().next().slideToggle(300);
             $(this).toggleClass("active");
             return false;
@@ -16,11 +16,13 @@ $(document).ready(function () {
     }
 
     /*var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        spaceBetween: 30
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+        },
     });*/
 
     //WPCF7
@@ -42,22 +44,22 @@ $(document).ready(function () {
     //WOOOOOOOO
 
     /*initQuantityInput();
-    $('body').on('click','.minus', function (e) {
-        var val = parseInt($(this).next('input').val());
-        if (val !== 0) {
-            $(this).next('input').val(val - 1).change();
-        }
-    });
-    $('body').on('click','.plus', function (e) {
-        var val = parseInt($(this).prev('input').val());
-        $(this).prev('input').val(val + 1).change();
+     $('body').on('click','.minus', function (e) {
+     var val = parseInt($(this).next('input').val());
+     if (val !== 0) {
+     $(this).next('input').val(val - 1).change();
+     }
+     });
+     $('body').on('click','.plus', function (e) {
+     var val = parseInt($(this).prev('input').val());
+     $(this).prev('input').val(val + 1).change();
 
-    });
-    $( document.body ).on('updated_cart_totals', function(){
-        initQuantityInput();
-    });
-    function initQuantityInput() {
-        $("form .quantity").prepend('<div class="minus qControls i-minus"></div>');
-        $("form .quantity").append('<div class="plus qControls i-plus"></div>');
-    }*/
+     });
+     $( document.body ).on('updated_cart_totals', function(){
+     initQuantityInput();
+     });
+     function initQuantityInput() {
+     $("form .quantity").prepend('<div class="minus qControls i-minus"></div>');
+     $("form .quantity").append('<div class="plus qControls i-plus"></div>');
+     }*/
 });
