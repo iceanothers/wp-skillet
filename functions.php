@@ -283,6 +283,16 @@ if(defined('WPCF7_VERSION')) {
     add_filter( 'wpcf7_form_elements', 'maybe_reset_autop' );
 }
 
+//Widgets extension
+add_filter('widget_categories_args','show_empty_widget_links');
+add_filter('widget_tag_cloud_args','show_empty_widget_links');
+
+//Show empty categories in category widget
+function show_empty_widget_links($args) {
+    $args['hide_empty'] = 0;
+    return $args;
+}
+
 /* ACF Repeater Styles */
 function acf_repeater_even() {
     $scheme = get_user_option( 'admin_color' );
