@@ -4,9 +4,17 @@
 
 //SHOP
 .productsBox {
-  @include boxGrid(3,2%);
   margin-top: 20px;
   text-align: center;
+  &.columns-2 {
+    @include boxGrid(2,2%);
+  }
+  &.columns-3 {
+    @include boxGrid(3,2%);
+  }
+  &.columns-4 {
+    @include boxGrid(4,2%);
+  }
   .product {
     border: 1px solid #ccc;
     padding: 20px;

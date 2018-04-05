@@ -44,22 +44,24 @@ $(document).ready(function () {
     //WOOOOOOOO
 
     /*initQuantityInput();
-     $('body').on('click','.minus', function (e) {
-     var val = parseInt($(this).next('input').val());
-     if (val !== 0) {
-     $(this).next('input').val(val - 1).change();
-     }
-     });
-     $('body').on('click','.plus', function (e) {
-     var val = parseInt($(this).prev('input').val());
-     $(this).prev('input').val(val + 1).change();
+    $('body').on('click', '.minus', function (e) {
+        var val = parseInt($(this).parent().find('input').val());
+        if (val !== 0) {
+            $(this).parent().find('input').val(val - 1).change();
+        }
+    });
+    $('body').on('click', '.plus', function (e) {
+        var val = parseInt($(this).parent().find('input').val());
+        $(this).parent().find('input').val(val + 1).change();
 
-     });
-     $( document.body ).on('updated_cart_totals', function(){
-     initQuantityInput();
-     });
-     function initQuantityInput() {
-     $("form .quantity").prepend('<div class="minus qControls i-minus"></div>');
-     $("form .quantity").append('<div class="plus qControls i-plus"></div>');
-     }*/
+    });
+    $(document.body).on('updated_cart_totals', function () {
+        initQuantityInput();
+    });
+
+    function initQuantityInput() {
+        $("form .quantity").prepend('<div class="minus qControls">-</div>');
+        $("form .quantity").append('<div class="plus qControls">+</div>');
+    }*/
+
 });
