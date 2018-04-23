@@ -217,16 +217,15 @@ function clear_nav_menu_item_id($id, $item, $args) {
     return "";
 }
 
-function content_btn($atts,$content){
+function content_button($atts,$content = null){
     extract(shortcode_atts(array(
-        'text' => 'Learn More',
-        'link' => site_url(),
+        'link' => '#',
         'class' => false,
         'target' => false
     ), $atts ));
-    return '<a href="' . $link . '" class="button'.($class?' '.$class:'').'" '.($target?'target="'.$target.'"':'').'>' . $text . '</a>';
+    return '<a href="' . $link . '" class="button'.($class?' '.$class:'').'" '.($target?'target="'.$target.'"':'').'>' . do_shortcode($content) . '</a>';
 }
-add_shortcode("button", "content_btn");
+add_shortcode("button", "content_button");
 
 //custom SEO title
 function seo_title(){
