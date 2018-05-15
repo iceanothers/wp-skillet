@@ -323,7 +323,7 @@ function some() {
     if($some) {
         $soc .= '<div class="some">';
         foreach($some as $sm) {
-            $soc .= '<a class="i-'.$sm['icon'].'" target="_blank" href="'.$sm['link'].'" rel="nofollow"></a>';
+            $soc .= '<a class="fa fa-'.$sm['icon'].'" target="_blank" href="'.$sm['link'].'" rel="nofollow"></a>';
         }
         $soc .= '</div>';
     }
@@ -331,7 +331,8 @@ function some() {
 }
 add_shortcode("social", "some");
 
-/*add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+/*add_theme_support("woocommerce");
+add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 // Remove the sorting dropdown from Woocommerce
 remove_action( 'woocommerce_before_shop_loop' , 'woocommerce_catalog_ordering', 30 );
 // Remove the result count from WooCommerce
