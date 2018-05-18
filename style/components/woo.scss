@@ -204,16 +204,15 @@
         @include justify-content(flex-start);
         margin-bottom: 0;
         li {
-          width: 100px;
-          margin: 0 5px;
+          width: 72px;
+          margin: 0 4px;
+          padding: 0;
           img {
-            border: 1px solid #ccc;
             cursor: pointer;
             opacity: 0.8;
             @include transition();
             &:hover, &.flex-active {
               opacity: 1;
-              border-color: $bg;
             }
           }
         }
@@ -324,6 +323,16 @@
 .price {
   font-size: rem(28);
   color: $bg;
+}
+
+.comment-form-rating {
+  display: inline-block;
+  vertical-align: top;
+  label,
+  select,
+  .selbel_w {
+    display: none;
+  }
 }
 
 /// Star Demensions.
