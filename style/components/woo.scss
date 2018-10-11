@@ -799,9 +799,7 @@ table.shop_attributes {
     margin: 0;
     li {
       padding: 0;
-      img {
-        width: 170px;
-      }
+      display: inline-block;
       &:before {
         display: none;
       }
